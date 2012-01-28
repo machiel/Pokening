@@ -10,3 +10,15 @@ c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame
 c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\squirtle.xnb
 C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\Background01.xnb
 C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\pikachu.xnb
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\bulbasaur.xnb
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\charmander.xnb
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\squirtle.xnb
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Background01.xnb
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\DangerousGame.exe
+E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\DangerousGame.pdb
+E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.exe
+E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.pdb

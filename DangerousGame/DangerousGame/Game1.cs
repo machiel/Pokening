@@ -31,6 +31,8 @@ namespace DangerousGame
 
         private bool pikachuHit = false;
 
+        Boolean gamePaused = false;
+
         SpriteFont spriteFont;
 
         public Game1()
@@ -101,25 +103,36 @@ namespace DangerousGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
 
-            // TODO: Add your update logic here
-            mPikachu.Update(gameTime);
+            KeyboardState keyboardState = Keyboard.GetState();
 
-            Rectangle pikachuRectangle = mPikachu.getRectangle();
-            Rectangle squirtleRectangle = mSquirtle.getRectangle();
-
-            if (IntersectPixels(pikachuRectangle, mPikachu.getTextureData(), squirtleRectangle, mSquirtle.getTextureData()))
+            if (keyboardState.IsKeyDown(Keys.Escape))
             {
-                this.displayText = "Ouch!";
-            }
-            else
-            {
-                this.displayText = "No worries. No hits!";
+                if (gamePaused) gamePaused = false;
+                else gamePaused = true;
             }
 
+            if(!gamePaused) { 
+                // Allows the game to exit
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                    this.Exit();
+
+
+                // TODO: Add your update logic here
+                mPikachu.Update(gameTime);
+
+                Rectangle pikachuRectangle = mPikachu.getRectangle();
+                Rectangle squirtleRectangle = mSquirtle.getRectangle();
+
+                if (IntersectPixels(pikachuRectangle, mPikachu.getTextureData(), squirtleRectangle, mSquirtle.getTextureData()))
+                {
+                    this.displayText = "Ouch!";
+                }
+                else
+                {
+                    this.displayText = "No worries. No hits!";
+                }
+            }
             base.Update(gameTime);
         }
 
