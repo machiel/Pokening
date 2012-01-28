@@ -1,0 +1,12 @@
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\pikachu.xnb
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\DangerousGame.exe
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\DangerousGame.pdb
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.exe
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.pdb
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\bulbasaur.xnb
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\charmander.xnb
+c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\squirtle.xnb
+C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\Background01.xnb
+C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb

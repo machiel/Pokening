@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DangerousGame", "DangerousGame\DangerousGame\DangerousGame.csproj", "{A591905C-C26E-4764-9517-B28C1DCA603D}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "DangerousGameContent", "DangerousGame\DangerousGameContent\DangerousGameContent.contentproj", "{183112BC-6C0F-460B-9C63-7BCDDE4E8DDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A591905C-C26E-4764-9517-B28C1DCA603D}.Debug|x86.ActiveCfg = Debug|x86
+		{A591905C-C26E-4764-9517-B28C1DCA603D}.Debug|x86.Build.0 = Debug|x86
+		{A591905C-C26E-4764-9517-B28C1DCA603D}.Release|x86.ActiveCfg = Release|x86
+		{A591905C-C26E-4764-9517-B28C1DCA603D}.Release|x86.Build.0 = Release|x86
+		{183112BC-6C0F-460B-9C63-7BCDDE4E8DDF}.Debug|x86.ActiveCfg = Debug|x86
+		{183112BC-6C0F-460B-9C63-7BCDDE4E8DDF}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

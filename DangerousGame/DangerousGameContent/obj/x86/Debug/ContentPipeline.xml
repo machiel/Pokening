@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>pikachu.png</Source>
+      <Name>pikachu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\pikachu.xnb</Output>
+      <Time>2012-01-26T12:09:35.867027+01:00</Time>
+    </Item>
+    <Item>
+      <Source>bulbasaur.png</Source>
+      <Name>bulbasaur</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\bulbasaur.xnb</Output>
+      <Time>2012-01-26T12:17:34.9545065+01:00</Time>
+    </Item>
+    <Item>
+      <Source>charmander.png</Source>
+      <Name>charmander</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\charmander.xnb</Output>
+      <Time>2012-01-26T12:17:34.9555065+01:00</Time>
+    </Item>
+    <Item>
+      <Source>squirtle.png</Source>
+      <Name>squirtle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\squirtle.xnb</Output>
+      <Time>2012-01-26T12:17:34.9565066+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Background01.png</Source>
+      <Name>Background01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\Background01.xnb</Output>
+      <Time>2012-01-26T13:08:42.5823608+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Calibri.spritefont</Source>
+      <Name>Calibri</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb</Output>
+      <Time>2012-01-26T13:36:47.078016+01:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGameContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGameContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\MillerWindowsLaptop\Documents\Visual Studio 2010\Projects\DangerousGame\DangerousGame\DangerousGame\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-01-26T00:55:47.0000419+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
