@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\pikachu.xnb</Output>
-      <Time>2012-01-29T10:02:45.044241+01:00</Time>
+      <Time>2012-01-29T18:13:22.02133+01:00</Time>
     </Item>
     <Item>
       <Source>bulbasaur.png</Source>
@@ -54,6 +54,24 @@
       <Options>None</Options>
       <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb</Output>
       <Time>2012-01-29T10:02:45.0252399+01:00</Time>
+    </Item>
+    <Item>
+      <Source>dirtTile.png</Source>
+      <Name>dirtTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\dirtTile.xnb</Output>
+      <Time>2012-01-29T17:08:14.0016265+01:00</Time>
+    </Item>
+    <Item>
+      <Source>grassTile.png</Source>
+      <Name>grassTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\grassTile.xnb</Output>
+      <Time>2012-01-29T17:07:58.4643629+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

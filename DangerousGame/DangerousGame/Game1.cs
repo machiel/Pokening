@@ -27,6 +27,8 @@ namespace DangerousGame
         Sprite Squirtle;
         Sprite Background;
 
+        Map Map;
+
         String displayText = "";
 
         Boolean gamePaused = false;
@@ -53,7 +55,7 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
-            Pikachu = new MainCharacter();
+            
             Bulbasaur = new Sprite();
             Charmander = new Sprite();
             Squirtle = new Sprite();
@@ -64,6 +66,28 @@ namespace DangerousGame
             Charmander.Position.Y = 200;
             Squirtle.Position.Y = 200;
             Squirtle.Position.X = 200;
+
+            int[][] level = new int[16][];
+            level[0] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            level[1] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            level[2] = new int[12] { 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 };
+            level[3] = new int[12] { 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0 };
+            level[4] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            level[5] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+            level[6] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+            level[7] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 };
+            level[8] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 };
+            level[9] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            level[10] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            level[11] = new int[12] { 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
+            level[12] = new int[12] { 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
+            level[13] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
+            level[14] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
+            level[15] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            Map = new Map(level);
+
+            Pikachu = new MainCharacter(Map);
 
             base.Initialize();
         }
@@ -81,6 +105,8 @@ namespace DangerousGame
             Squirtle.LoadContent(this.Content, "squirtle");
             Charmander.LoadContent(this.Content, "charmander");
             Background.LoadContent(this.Content, "Background01");
+            Map.LoadContent(this.Content, "grassTile", 0);
+            Map.LoadContent(this.Content, "dirtTile", 1);
             spriteFont = Content.Load<SpriteFont>("Calibri");
         }
 
@@ -175,10 +201,12 @@ namespace DangerousGame
 
             spriteBatch.Begin();
             Background.Draw(spriteBatch);
+            Map.Draw(spriteBatch);
             Squirtle.Draw(spriteBatch);
             Charmander.Draw(spriteBatch);
             Bulbasaur.Draw(spriteBatch);
             Pikachu.Draw(spriteBatch);
+            
             spriteBatch.DrawString(spriteFont, displayText, new Vector2(400, 10), Color.White);
             spriteBatch.End();
 

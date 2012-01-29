@@ -22,22 +22,29 @@ namespace DangerousGame
         const int MOVE_RIGHT = 1;
         const int MOVE_LEFT = -1;
 
+        private Map _Map;
+
         KeyboardState PreviousKeyboardState;
+
+        public MainCharacter (Map _Map)
+        {
+            this._Map = _Map;
+        }
 
         public void Update(GameTime gameTime)
         {
             KeyboardState KeyboardState = Keyboard.GetState();
-            UpdateMovement(KeyboardState);
+            UpdateMovement(KeyboardState, gameTime);
             PreviousKeyboardState = KeyboardState;
             base.Update(gameTime, Speed, Direction);
         }
 
-        private void UpdateMovement(KeyboardState aCurrentKeyboardState)
+        private void UpdateMovement(KeyboardState aCurrentKeyboardState, GameTime gameTime)
         {
             // Reseting speed and direction
             Speed = Vector2.Zero;
             Direction = Vector2.Zero;
-
+  
             // Left and Right arrow keys
             if (aCurrentKeyboardState.IsKeyDown(Keys.Left))
             {
@@ -49,19 +56,28 @@ namespace DangerousGame
                 Speed.X = speed;
                 Direction.X = MOVE_RIGHT;
             }
-            
+
             // Up and Down arrow keys
-            if (aCurrentKeyboardState.IsKeyDown(Keys.Up))
+            if
+                (aCurrentKeyboardState.IsKeyDown(Keys.Up))
             {
                 Speed.Y = speed;
                 Direction.Y = MOVE_UP;
             }
-            else if(aCurrentKeyboardState.IsKeyDown(Keys.Down))
+            else if (aCurrentKeyboardState.IsKeyDown(Keys.Down))
             {
                 Speed.Y = speed;
                 Direction.Y = MOVE_DOWN;
             }
-            
+
+            Vector2 newPosition = Position + (Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            if (!_Map.MayWalk(this, newPosition))
+            {
+                Speed = Vector2.Zero;
+                Direction = Vector2.Zero;
+            }
+                
+
         }
 
     }
