@@ -22,3 +22,15 @@ E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\ResolveAssemblyRe
 E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.exe
 E:\projects\pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.pdb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\pikachu.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\bulbasaur.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\charmander.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\squirtle.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Background01.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\DangerousGame.exe
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\DangerousGame.pdb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.exe
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.pdb

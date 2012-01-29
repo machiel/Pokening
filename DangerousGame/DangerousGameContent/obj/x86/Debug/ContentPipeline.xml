@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\pikachu.xnb</Output>
-      <Time>2012-01-26T12:09:36+01:00</Time>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\pikachu.xnb</Output>
+      <Time>2012-01-29T10:02:45.044241+01:00</Time>
     </Item>
     <Item>
       <Source>bulbasaur.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\bulbasaur.xnb</Output>
-      <Time>2012-01-26T12:17:35+01:00</Time>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\bulbasaur.xnb</Output>
+      <Time>2012-01-29T10:02:45.0302402+01:00</Time>
     </Item>
     <Item>
       <Source>charmander.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\charmander.xnb</Output>
-      <Time>2012-01-26T12:17:35+01:00</Time>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\charmander.xnb</Output>
+      <Time>2012-01-29T10:02:45.0302402+01:00</Time>
     </Item>
     <Item>
       <Source>squirtle.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\squirtle.xnb</Output>
-      <Time>2012-01-26T12:17:35+01:00</Time>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\squirtle.xnb</Output>
+      <Time>2012-01-29T10:02:45.045241+01:00</Time>
     </Item>
     <Item>
       <Source>Background01.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Background01.xnb</Output>
-      <Time>2012-01-26T13:08:42+01:00</Time>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Background01.xnb</Output>
+      <Time>2012-01-29T10:02:45.0242398+01:00</Time>
     </Item>
     <Item>
       <Source>Calibri.spritefont</Source>
@@ -52,8 +52,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb</Output>
-      <Time>2012-01-26T13:36:47+01:00</Time>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb</Output>
+      <Time>2012-01-29T10:02:45.0252399+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -61,10 +61,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>E:\projects\pokening\DangerousGame\DangerousGameContent\</RootDirectory>
-      <LoggerRootDirectory>E:\projects\pokening\DangerousGame\DangerousGame\</LoggerRootDirectory>
-      <IntermediateDirectory>E:\projects\pokening\DangerousGame\DangerousGameContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>E:\projects\pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Arco\Pokening\DangerousGame\DangerousGameContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Arco\Pokening\DangerousGame\DangerousGameContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -93,7 +93,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-01-25T17:50:15.0560988+01:00</Value>
+        <Value>2012-01-29T00:38:01.6558821+01:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

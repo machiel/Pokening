@@ -106,6 +106,7 @@ namespace DangerousGame
 
             KeyboardState keyboardState = Keyboard.GetState();
 
+            // Pausing game when hitting the escape key
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
                 if (gamePaused) gamePaused = false;
