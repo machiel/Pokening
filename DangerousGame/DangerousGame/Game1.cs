@@ -21,15 +21,13 @@ namespace DangerousGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        MainCharacter mPikachu;
-        Sprite mBulbasaur;
-        Sprite mCharmander;
-        Sprite mSquirtle;
-        Sprite mBackground;
+        MainCharacter Pikachu;
+        Sprite Bulbasaur;
+        Sprite Charmander;
+        Sprite Squirtle;
+        Sprite Background;
 
         String displayText = "";
-
-        private bool pikachuHit = false;
 
         Boolean gamePaused = false;
 
@@ -39,7 +37,9 @@ namespace DangerousGame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            this.Window.Title = "Pokémon";
+            this.Window.Title = "Pokening";
+
+            // Window size
             this.graphics.PreferredBackBufferWidth = 800;
             this.graphics.PreferredBackBufferHeight = 600;
             //this.graphics.IsFullScreen = true;
@@ -53,19 +53,17 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Pikachu = new MainCharacter();
+            Bulbasaur = new Sprite();
+            Charmander = new Sprite();
+            Squirtle = new Sprite();
+            Background = new Sprite();
+            Background.Scale = 1.5f;
 
-            mPikachu = new MainCharacter();
-            mBulbasaur = new Sprite();
-            mCharmander = new Sprite();
-            mSquirtle = new Sprite();
-            mBackground = new Sprite();
-            mBackground.Scale = 1.5f;
-
-            mBulbasaur.Position.X = 200;
-            mCharmander.Position.Y = 200;
-            mSquirtle.Position.Y = 200;
-            mSquirtle.Position.X = 200;
+            Bulbasaur.Position.X = 200;
+            Charmander.Position.Y = 200;
+            Squirtle.Position.Y = 200;
+            Squirtle.Position.X = 200;
 
             base.Initialize();
         }
@@ -78,13 +76,12 @@ namespace DangerousGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            mPikachu.LoadContent(this.Content, "pikachu");
-            mBulbasaur.LoadContent(this.Content, "bulbasaur");
-            mSquirtle.LoadContent(this.Content, "squirtle");
-            mCharmander.LoadContent(this.Content, "charmander");
-            mBackground.LoadContent(this.Content, "Background01");
+            Pikachu.LoadContent(this.Content, "pikachu");
+            Bulbasaur.LoadContent(this.Content, "bulbasaur");
+            Squirtle.LoadContent(this.Content, "squirtle");
+            Charmander.LoadContent(this.Content, "charmander");
+            Background.LoadContent(this.Content, "Background01");
             spriteFont = Content.Load<SpriteFont>("Calibri");
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -103,7 +100,6 @@ namespace DangerousGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
             KeyboardState keyboardState = Keyboard.GetState();
 
             // Pausing game when hitting the escape key
@@ -118,32 +114,35 @@ namespace DangerousGame
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                     this.Exit();
 
+                // Updating Pikachu
+                Pikachu.Update(gameTime);
 
-                // TODO: Add your update logic here
-                mPikachu.Update(gameTime);
-
-                Rectangle pikachuRectangle = mPikachu.getRectangle();
-                Rectangle squirtleRectangle = mSquirtle.getRectangle();
-
-                if (IntersectPixels(pikachuRectangle, mPikachu.getTextureData(), squirtleRectangle, mSquirtle.getTextureData()))
-                {
+                // Check for an pixel intersect between Pikachu and Squirtle
+                if(IntersectPixels(Pikachu, Squirtle))
                     this.displayText = "Ouch!";
-                }
                 else
-                {
                     this.displayText = "No worries. No hits!";
-                }
             }
+            
+            // Updating parent class
             base.Update(gameTime);
         }
 
-        private bool IntersectPixels(Rectangle one, Color[] textureOne, Rectangle two, Color[] textureTwo)
+        private bool IntersectPixels(Sprite obj1Sprite, Sprite obj2Sprite)
         {
+            // Getting the position and dimensions of both sprites
+            Rectangle obj1 = new Rectangle((int)obj1Sprite.Position.X, (int)obj1Sprite.Position.Y, obj1Sprite.Size.Width, obj1Sprite.Size.Height);
+            Rectangle obj2 = new Rectangle((int)obj2Sprite.Position.X, (int)obj2Sprite.Position.Y, obj2Sprite.Size.Width, obj2Sprite.Size.Height);
+
+            // Getting the texture data from both sprites
+            Color[] obj1Texture = obj1Sprite.getTextureData();
+            Color[] obj2Texture = obj2Sprite.getTextureData();
+
             // Find the bounds of the rectangle intersection
-            int top = Math.Max(one.Top, two.Top);
-            int bottom = Math.Min(one.Bottom, two.Bottom);
-            int left = Math.Max(one.Left, two.Left);
-            int right = Math.Min(one.Right, two.Right);
+            int top = Math.Max(obj1.Top, obj2.Top);
+            int bottom = Math.Min(obj1.Bottom, obj2.Bottom);
+            int left = Math.Max(obj1.Left, obj2.Left);
+            int right = Math.Min(obj1.Right, obj2.Right);
 
             // Check every point within the intersection bounds
             for (int y = top; y < bottom; y++)
@@ -151,15 +150,13 @@ namespace DangerousGame
                 for (int x = left; x < right; x++)
                 {
                     // Get the color of both pixels at this point
-                    Color colorA = textureOne[(x - one.Left) +
-                                         (y - one.Top) * one.Width];
-                    Color colorB = textureTwo[(x - two.Left) +
-                                         (y - two.Top) * two.Width];
+                    Color colorA = obj1Texture[(x - obj1.Left) + ((y - obj1.Top) * obj1.Width)];
+                    Color colorB = obj2Texture[(x - obj2.Left) + ((y - obj2.Top) * obj2.Width)];
 
                     // If both pixels are not completely transparent,
                     if (colorA.A != 0 && colorB.A != 0)
                     {
-                        // then an intersection has been found
+                        // Then an intersection has been found
                         return true;
                     }
                 }
@@ -173,16 +170,15 @@ namespace DangerousGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            // Clearing the stag with specified color
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
             spriteBatch.Begin();
-            mBackground.Draw(spriteBatch);
-            mSquirtle.Draw(spriteBatch);
-            mCharmander.Draw(spriteBatch);
-            mBulbasaur.Draw(spriteBatch);
-            mPikachu.Draw(spriteBatch);
+            Background.Draw(spriteBatch);
+            Squirtle.Draw(spriteBatch);
+            Charmander.Draw(spriteBatch);
+            Bulbasaur.Draw(spriteBatch);
+            Pikachu.Draw(spriteBatch);
             spriteBatch.DrawString(spriteFont, displayText, new Vector2(400, 10), Color.White);
             spriteBatch.End();
 
