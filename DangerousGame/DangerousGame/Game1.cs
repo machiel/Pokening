@@ -62,6 +62,8 @@ namespace DangerousGame
             Player.setAnimation(32, 46);
             Player.addAnimation("walkDown", new int[] { 1, 2 }, 4);
             Player.addAnimation("walkUp", new int[] { 4, 5 }, 4);
+            Player.addAnimation("walkLeft", new int[] { 7, 8 }, 5);
+            Player.addAnimation("walkRight", new int[] { 10, 11 }, 5);
 
             base.Initialize();
         }

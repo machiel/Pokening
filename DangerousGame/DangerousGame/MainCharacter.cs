@@ -50,14 +50,15 @@ namespace DangerousGame
             {
                 Speed.X = speed;
                 Direction.X = MOVE_LEFT;
+                play("walkLeft");
             }
             else if (aCurrentKeyboardState.IsKeyDown(Keys.Right))
             {
                 Speed.X = speed;
                 Direction.X = MOVE_RIGHT;
+                play("walkRight");
             }
-
-            // Up and Down arrow keys
+            
             if
                 (aCurrentKeyboardState.IsKeyDown(Keys.Up))
             {
@@ -71,8 +72,10 @@ namespace DangerousGame
                 Direction.Y = MOVE_DOWN;
                 play("walkDown");
             }
-            else
+
+            if (Speed.Equals(Vector2.Zero))
                 stop();
+            
 
             Vector2 newPosition = Position + (Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
             if (!_Map.MayWalk(this, newPosition))
