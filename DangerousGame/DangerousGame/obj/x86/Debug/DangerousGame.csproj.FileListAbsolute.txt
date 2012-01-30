@@ -36,3 +36,4 @@ C:\Users\Arco\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.e
 C:\Users\Arco\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.pdb
 C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\dirtTile.xnb
 C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\grassTile.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\mainChar.xnb

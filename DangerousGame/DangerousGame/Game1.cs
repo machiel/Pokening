@@ -21,7 +21,7 @@ namespace DangerousGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        MainCharacter Pikachu;
+        MainCharacter Player;
         Sprite Bulbasaur;
         Sprite Charmander;
         Sprite Squirtle;
@@ -87,7 +87,10 @@ namespace DangerousGame
 
             Map = new Map(level);
 
-            Pikachu = new MainCharacter(Map);
+            Player = new MainCharacter(Map);
+            Player.setAnimation(32, 46);
+            Player.addAnimation("walk", new int[] { 1, 2 }, 4);
+            //Player.play("walk");
 
             base.Initialize();
         }
@@ -100,7 +103,7 @@ namespace DangerousGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Pikachu.LoadContent(this.Content, "pikachu");
+            Player.LoadContent(this.Content, "mainChar");
             Bulbasaur.LoadContent(this.Content, "bulbasaur");
             Squirtle.LoadContent(this.Content, "squirtle");
             Charmander.LoadContent(this.Content, "charmander");
@@ -141,10 +144,10 @@ namespace DangerousGame
                     this.Exit();
 
                 // Updating Pikachu
-                Pikachu.Update(gameTime);
+                Player.Update(gameTime);
 
                 // Check for an pixel intersect between Pikachu and Squirtle
-                if(IntersectPixels(Pikachu, Squirtle))
+                if(IntersectPixels(Player, Squirtle))
                     this.displayText = "Ouch!";
                 else
                     this.displayText = "No worries. No hits!";
@@ -205,7 +208,7 @@ namespace DangerousGame
             Squirtle.Draw(spriteBatch);
             Charmander.Draw(spriteBatch);
             Bulbasaur.Draw(spriteBatch);
-            Pikachu.Draw(spriteBatch);
+            Player.Draw(spriteBatch);
             
             spriteBatch.DrawString(spriteFont, displayText, new Vector2(400, 10), Color.White);
             spriteBatch.End();

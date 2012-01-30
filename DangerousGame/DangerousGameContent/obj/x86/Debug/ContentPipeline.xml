@@ -73,6 +73,15 @@
       <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\grassTile.xnb</Output>
       <Time>2012-01-29T17:07:58.4643629+01:00</Time>
     </Item>
+    <Item>
+      <Source>mainChar.png</Source>
+      <Name>mainChar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\mainChar.xnb</Output>
+      <Time>2012-01-30T14:20:11.0180512+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

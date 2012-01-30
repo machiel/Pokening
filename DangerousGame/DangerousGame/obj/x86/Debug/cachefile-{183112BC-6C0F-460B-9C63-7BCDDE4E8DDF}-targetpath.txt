@@ -6,3 +6,4 @@ Content\Background01.xnb
 Content\Calibri.xnb
 Content\dirtTile.xnb
 Content\grassTile.xnb
+Content\mainChar.xnb

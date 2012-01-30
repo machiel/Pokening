@@ -68,7 +68,10 @@ namespace DangerousGame
             {
                 Speed.Y = speed;
                 Direction.Y = MOVE_DOWN;
+                play("walk");
             }
+            else
+                stop();
 
             Vector2 newPosition = Position + (Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
             if (!_Map.MayWalk(this, newPosition))

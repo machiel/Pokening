@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MainCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

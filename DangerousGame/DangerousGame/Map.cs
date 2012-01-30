@@ -25,6 +25,9 @@ namespace DangerousGame
             this.tiles = tiles;
         }
 
+        /// <summary>
+        /// Adds new content to the TileType array
+        /// </summary>
         public void LoadContent(ContentManager contentManager, string theAsset, int index)
         {
             TileTypes[index] = contentManager.Load<Texture2D>(theAsset);
@@ -34,6 +37,7 @@ namespace DangerousGame
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            // For each tile drawing the texture corresponding with that tile
             for(int x = 0; x < tiles.Length; x++)
             {
                 for (int y = 0; y < tiles[x].Length; y++)
@@ -49,6 +53,11 @@ namespace DangerousGame
             return TileTypes[value];
         }
 
+        /// <summary>
+        /// Checking or the given sprite can walk to the 'newPosition' he wants to go
+        /// </summary>
+        /// <param name="obj1">The sprite</param>
+        /// <param name="newPosition">His new position</param>
         public bool MayWalk(Sprite obj1, Vector2 newPosition)
         {
             int x = (int)newPosition.X;
