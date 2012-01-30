@@ -59,18 +59,6 @@ namespace DangerousGame
                     Color tileBL = getTileColor(textureData, mapImage, (x - 1), (y + 1));
                     Color tileBM = getTileColor(textureData, mapImage, x, (y + 1));
                     Color tileBR = getTileColor(textureData, mapImage, (x + 1), (y + 1));
-                    
-                    /*if(x > 0 && y > 0)
-                         tileTL = textureData[(x - 1) + ((y - 1) * mapImage.Width)];
-                    else
-                        tileTL = new Color();
-                    Color tileTM = textureData[x + ((y - 1) * mapImage.Width)];
-                    Color tileTR = textureData[(x + 1) + ((y + 1) * mapImage.Width)];
-                    Color tileL = textureData[(x - 1) + (y * mapImage.Width)];
-                    Color tileR = textureData[(x + 1) + (y * mapImage.Width)];
-                    Color tileBL = textureData[(x - 1) + ((y + 1) * mapImage.Width)];
-                    Color tileBM = textureData[x + ((y + 1) * mapImage.Width)];
-                    Color tileBR = textureData[(x + 1) + ((y + 1) * mapImage.Width)];*/
 
                     int type;
                     if (color != tileL && color != tileTM)
