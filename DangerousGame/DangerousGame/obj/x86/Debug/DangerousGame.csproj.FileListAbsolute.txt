@@ -37,3 +37,5 @@ C:\Users\Arco\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.p
 C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\dirtTile.xnb
 C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\grassTile.xnb
 C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\mainChar.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\map-example.xnb
+C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\tiles.xnb

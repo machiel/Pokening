@@ -82,6 +82,24 @@
       <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\mainChar.xnb</Output>
       <Time>2012-01-30T14:20:11.0180512+01:00</Time>
     </Item>
+    <Item>
+      <Source>map-example.png</Source>
+      <Name>map-example</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\map-example.xnb</Output>
+      <Time>2012-01-30T21:35:08.6761611+01:00</Time>
+    </Item>
+    <Item>
+      <Source>tiles.png</Source>
+      <Name>tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Arco\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\tiles.xnb</Output>
+      <Time>2012-01-30T20:26:38+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -85,7 +85,7 @@ namespace DangerousGame
             level[14] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
             level[15] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            Map = new Map(level);
+            Map = new Map();
 
             Player = new MainCharacter(Map);
             Player.setAnimation(32, 46);
@@ -108,8 +108,8 @@ namespace DangerousGame
             Squirtle.LoadContent(this.Content, "squirtle");
             Charmander.LoadContent(this.Content, "charmander");
             Background.LoadContent(this.Content, "Background01");
-            Map.LoadContent(this.Content, "grassTile", 0);
-            Map.LoadContent(this.Content, "dirtTile", 1);
+            Map.LoadTiles(this.Content, "tiles");
+            Map.CreateMap(this.Content, "map-example");
             spriteFont = Content.Load<SpriteFont>("Calibri");
         }
 
