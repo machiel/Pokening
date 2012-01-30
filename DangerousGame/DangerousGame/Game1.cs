@@ -22,10 +22,7 @@ namespace DangerousGame
         SpriteBatch spriteBatch;
 
         MainCharacter Player;
-        Sprite Bulbasaur;
-        Sprite Charmander;
         Sprite Squirtle;
-        Sprite Background;
 
         Map Map;
 
@@ -55,42 +52,16 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
-            
-            Bulbasaur = new Sprite();
-            Charmander = new Sprite();
             Squirtle = new Sprite();
-            Background = new Sprite();
-            Background.Scale = 1.5f;
-
-            Bulbasaur.Position.X = 200;
-            Charmander.Position.Y = 200;
             Squirtle.Position.Y = 200;
             Squirtle.Position.X = 200;
-
-            int[][] level = new int[16][];
-            level[0] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            level[1] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            level[2] = new int[12] { 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 };
-            level[3] = new int[12] { 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0 };
-            level[4] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            level[5] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
-            level[6] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
-            level[7] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 };
-            level[8] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 };
-            level[9] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            level[10] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            level[11] = new int[12] { 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
-            level[12] = new int[12] { 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
-            level[13] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
-            level[14] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 };
-            level[15] = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             Map = new Map();
 
             Player = new MainCharacter(Map);
             Player.setAnimation(32, 46);
-            Player.addAnimation("walk", new int[] { 1, 2 }, 4);
-            //Player.play("walk");
+            Player.addAnimation("walkDown", new int[] { 1, 2 }, 4);
+            Player.addAnimation("walkUp", new int[] { 4, 5 }, 4);
 
             base.Initialize();
         }
@@ -104,10 +75,7 @@ namespace DangerousGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Player.LoadContent(this.Content, "mainChar");
-            Bulbasaur.LoadContent(this.Content, "bulbasaur");
             Squirtle.LoadContent(this.Content, "squirtle");
-            Charmander.LoadContent(this.Content, "charmander");
-            Background.LoadContent(this.Content, "Background01");
             Map.LoadTiles(this.Content, "tiles");
             Map.CreateMap(this.Content, "map-example");
             spriteFont = Content.Load<SpriteFont>("Calibri");
@@ -203,14 +171,11 @@ namespace DangerousGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            Background.Draw(spriteBatch);
             Map.Draw(spriteBatch);
             Squirtle.Draw(spriteBatch);
-            Charmander.Draw(spriteBatch);
-            Bulbasaur.Draw(spriteBatch);
             Player.Draw(spriteBatch);
             
-            spriteBatch.DrawString(spriteFont, displayText, new Vector2(400, 10), Color.White);
+            spriteBatch.DrawString(spriteFont, displayText, new Vector2(600, 10), Color.Black);
             spriteBatch.End();
 
             base.Draw(gameTime);

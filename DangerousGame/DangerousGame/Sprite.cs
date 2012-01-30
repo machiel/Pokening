@@ -49,12 +49,14 @@ namespace DangerousGame
                 SpriteBatch.Draw(Texture, Position, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             else
             {
-                int framePosX;
-                if(isPlaying)
-                    framePosX = frameWidth * currentAnimation.getFrame();
-                else
-                    framePosX = 0;
-                SpriteBatch.Draw(Texture, Position, new Rectangle(framePosX, 0, frameWidth, frameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+                int framePosX = 0;
+                int framePosY = 0;
+                if (isPlaying)
+                {
+                    framePosY = (currentAnimation.getFrame() / (Texture.Width / frameWidth)) * frameHeight;
+                    framePosX = (currentAnimation.getFrame() % (Texture.Width / frameWidth)) * frameWidth;
+                }
+                SpriteBatch.Draw(Texture, Position, new Rectangle(framePosX, framePosY, frameWidth, frameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
         }
 

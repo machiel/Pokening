@@ -63,12 +63,13 @@ namespace DangerousGame
             {
                 Speed.Y = speed;
                 Direction.Y = MOVE_UP;
+                play("walkUp");
             }
             else if (aCurrentKeyboardState.IsKeyDown(Keys.Down))
             {
                 Speed.Y = speed;
                 Direction.Y = MOVE_DOWN;
-                play("walk");
+                play("walkDown");
             }
             else
                 stop();
