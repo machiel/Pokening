@@ -23,17 +23,19 @@ namespace DangerousGame
         public const int BM = 8;
         public const int BR = 9;
         public int type;
+        private bool isObstacle;
 
         // From top left to right bottom the number of which tile it is
         public int tile;
 
         private Texture2D _TileMap;
 
-        public Tile(string color, int type, Texture2D _TileMap)
+        public Tile(string color, int type, Texture2D _TileMap, bool obstacle)
         {
             sort = color;
             this.type = type;
             this._TileMap = _TileMap;
+            this.isObstacle = obstacle;
 
             if (sort == GRASS)
                 tile = 21;

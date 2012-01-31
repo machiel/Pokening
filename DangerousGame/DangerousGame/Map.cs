@@ -20,7 +20,6 @@ namespace DangerousGame
         // All the tile images
         private Texture2D TileMap;
         private Texture2D mapImage;
-        private Texture2D obstacleMapImage;
 
         const int GRASSTILE = 0;
         const int DIRTTILE = 1;
@@ -41,8 +40,11 @@ namespace DangerousGame
         public void CreateMap(ContentManager contentManager, string theAsset)
         {
             mapImage = contentManager.Load<Texture2D>(theAsset);
+            Texture2D obstacleMap = contentManager.Load<Texture2D>(theAsset + "-obstacle");
             Color[] textureData = new Color[mapImage.Width * mapImage.Height];
+            Color[] obstacleTextureData = new Color[mapImage.Width * mapImage.Height];
             mapImage.GetData(textureData);
+            obstacleMap.GetData(obstacleTextureData);
 
             // Check every point within the intersection bounds
             for (int x = 0; x < mapImage.Width; x++)
@@ -50,9 +52,18 @@ namespace DangerousGame
                 tiles.Add(new List<Tile>());
                 for (int y = 0; y < mapImage.Height; y++)
                 {
+
+                    bool isObstacle = false;
+
                     // Get the color of both pixels at this point
                     Color color = textureData[(x) + (y * mapImage.Width)];
+                    Color obstacleColor = textureData[(x) + (y * mapImage.Width)]; 
                     string colorString = color.R.ToString() + color.G.ToString() + color.B.ToString();
+                    string obstacleColorString = color.R.ToString() + color.G.ToString() + color.B.ToString();
+
+                    if(obstacleColorString == "000") {
+                        isObstacle = true;
+                    }
 
                     Color tileTL = getTileColor(textureData, mapImage, (x - 1), (y - 1));
                     Color tileTM = getTileColor(textureData, mapImage, x, (y - 1));
@@ -83,7 +94,7 @@ namespace DangerousGame
                     else
                         type = Tile.M;
 
-                    tiles[x].Add(new Tile(colorString, type, TileMap));
+                    tiles[x].Add(new Tile(colorString, type, TileMap, isObstacle));
                 }
             }
         }
