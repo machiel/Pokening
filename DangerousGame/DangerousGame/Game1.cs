@@ -22,7 +22,6 @@ namespace DangerousGame
         SpriteBatch spriteBatch;
 
         MainCharacter Player;
-        Sprite Squirtle;
 
         Map Map;
 
@@ -52,13 +51,11 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
-            Squirtle = new Sprite();
-            Squirtle.Position.Y = 200;
-            Squirtle.Position.X = 200;
-
             Map = new Map();
 
             Player = new MainCharacter(Map);
+            Player.Position.X = (400 - 16);
+            Player.Position.Y = (300 - 16);
             Player.setAnimation(32, 46);
             Player.addAnimation("walkDown", new int[] { 1, 2 }, 4);
             Player.addAnimation("walkUp", new int[] { 4, 5 }, 4);
@@ -77,7 +74,6 @@ namespace DangerousGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Player.LoadContent(this.Content, "mainChar");
-            Squirtle.LoadContent(this.Content, "squirtle");
             Map.LoadTiles(this.Content, "tiles");
             Map.CreateMap(this.Content, "map-example");
             spriteFont = Content.Load<SpriteFont>("Calibri");
@@ -115,12 +111,6 @@ namespace DangerousGame
 
                 // Updating Pikachu
                 Player.Update(gameTime);
-
-                // Check for an pixel intersect between Pikachu and Squirtle
-                if(IntersectPixels(Player, Squirtle))
-                    this.displayText = "Ouch!";
-                else
-                    this.displayText = "No worries. No hits!";
             }
             
             // Updating parent class
@@ -174,7 +164,6 @@ namespace DangerousGame
 
             spriteBatch.Begin();
             Map.Draw(spriteBatch);
-            Squirtle.Draw(spriteBatch);
             Player.Draw(spriteBatch);
             
             spriteBatch.DrawString(spriteFont, displayText, new Vector2(600, 10), Color.Black);

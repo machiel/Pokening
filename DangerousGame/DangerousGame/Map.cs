@@ -15,6 +15,8 @@ namespace DangerousGame
         // Array with tiles, what kind of tile on what position
         public List<List<Tile>> tiles = new List<List<Tile>>();
 
+        private Vector2 position = Vector2.Zero;
+
         // All the tile images
         private Texture2D TileMap;
         private Texture2D mapImage;
@@ -103,9 +105,15 @@ namespace DangerousGame
                 for (int y = 0; y < tiles[x].Count; y++)
                 {
                     Rectangle tile = tiles[x][y].getTile();
-                    spriteBatch.Draw(TileMap, new Vector2(x * 50, y * 50), tile, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.Draw(TileMap, new Vector2(x * 50 , y * 50) + (position * -1), tile, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
                 }
             }
+        }
+
+        public void setCenterPosition(Vector2 centerPoint)
+        {
+            position.X = centerPoint.X - 400;
+            position.Y = centerPoint.Y - 300;
         }
 
         /// <summary>

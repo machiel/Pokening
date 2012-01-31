@@ -43,6 +43,11 @@ namespace DangerousGame
             return textureData;
         }
 
+        public Vector2 getCenter()
+        {
+            return new Vector2(400 - 16, 300 - 16);
+        }
+
         public void Draw(SpriteBatch SpriteBatch)
         {
             if (!isAnimated)
@@ -56,7 +61,7 @@ namespace DangerousGame
                     framePosY = (currentAnimation.getFrame() / (Texture.Width / frameWidth)) * frameHeight;
                     framePosX = (currentAnimation.getFrame() % (Texture.Width / frameWidth)) * frameWidth;
                 }
-                SpriteBatch.Draw(Texture, Position, new Rectangle(framePosX, framePosY, frameWidth, frameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+                SpriteBatch.Draw(Texture, getCenter(), new Rectangle(framePosX, framePosY, frameWidth, frameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
         }
 

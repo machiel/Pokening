@@ -38,7 +38,6 @@ namespace DangerousGame
             PreviousKeyboardState = KeyboardState;
             base.Update(gameTime, Speed, Direction);
         }
-
         private void UpdateMovement(KeyboardState aCurrentKeyboardState, GameTime gameTime)
         {
             // Reseting speed and direction
@@ -82,6 +81,10 @@ namespace DangerousGame
             {
                 Speed = Vector2.Zero;
                 Direction = Vector2.Zero;
+            }
+            else
+            {
+                _Map.setCenterPosition(newPosition);
             }
                 
 
