@@ -57,12 +57,18 @@ namespace DangerousGame
 
                     // Get the color of both pixels at this point
                     Color color = textureData[(x) + (y * mapImage.Width)];
-                    Color obstacleColor = textureData[(x) + (y * mapImage.Width)]; 
+                    Color obstacleColor = obstacleTextureData[(x) + (y * mapImage.Width)]; 
                     string colorString = color.R.ToString() + color.G.ToString() + color.B.ToString();
-                    string obstacleColorString = color.R.ToString() + color.G.ToString() + color.B.ToString();
-
-                    if(obstacleColorString == "000") {
+                    string obstacleColorString = obstacleColor.R.ToString() + obstacleColor.G.ToString() + obstacleColor.B.ToString();
+                    //Console.Out.WriteLine(obstacleColorString);
+                    if (obstacleColorString == "000")
+                    {
                         isObstacle = true;
+                        //Console.Out.WriteLine("Obstacle found");
+                    }
+                    else
+                    {
+                        //Console.Out.WriteLine("Obstacle not found");
                     }
 
                     Color tileTL = getTileColor(textureData, mapImage, (x - 1), (y - 1));
@@ -111,13 +117,38 @@ namespace DangerousGame
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
+            Vector2 invPosition = position * -1;
+
             // For each tile drawing the texture corresponding with that tile
             for(int x = 0; x < tiles.Capacity; x++)
             {
+                int newX = x * 50;
                 for (int y = 0; y < tiles[x].Count; y++)
                 {
-                    Rectangle tile = tiles[x][y].getTile();
-                    spriteBatch.Draw(TileMap, new Vector2(x * 50 , y * 50) + (position * -1), tile, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    Tile tTile = tiles[x][y];
+                    Rectangle tile = tTile.getTile();
+
+                    int newY = y * 50;
+
+                    Vector2 min = new Vector2(newX, newY) + invPosition;
+                    Vector2 max = new Vector2(newX + 50, newY + 50) + invPosition;
+
+                    if (MainCharacter.getCenter().X >= min.X && MainCharacter.getCenter().Y >= min.Y
+                        && MainCharacter.getCenter().X <= max.X && MainCharacter.getCenter().Y <= max.Y)
+                    {
+                        if (tTile.isObstacle())
+                        {
+                            //Console.Out.WriteLine("HIT");
+                        }
+                        else
+                        {
+                            //Console.Out.WriteLine("X: " + min.X + ", Y: " + min.Y);
+                            //Console.Out.WriteLine(tTile.sort);
+                        }
+                    }
+
+                    spriteBatch.Draw(TileMap, min, tile, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
                 }
             }
         }

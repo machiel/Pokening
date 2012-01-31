@@ -43,7 +43,7 @@ namespace DangerousGame
             return textureData;
         }
 
-        public Vector2 getCenter()
+        public static Vector2 getCenter()
         {
             return new Vector2(400 - 16, 300 - 16);
         }

@@ -23,7 +23,7 @@ namespace DangerousGame
         public const int BM = 8;
         public const int BR = 9;
         public int type;
-        private bool isObstacle;
+        private bool obstacle;
 
         // From top left to right bottom the number of which tile it is
         public int tile;
@@ -35,7 +35,7 @@ namespace DangerousGame
             sort = color;
             this.type = type;
             this._TileMap = _TileMap;
-            this.isObstacle = obstacle;
+            this.obstacle = obstacle;
 
             if (sort == GRASS)
                 tile = 21;
@@ -58,6 +58,11 @@ namespace DangerousGame
             else if (sort == PATH && type == BR)
                 tile = 25;
             
+        }
+
+        public bool isObstacle()
+        {
+            return this.obstacle;
         }
 
         public Rectangle getTile()

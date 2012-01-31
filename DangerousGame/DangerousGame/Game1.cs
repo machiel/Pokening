@@ -56,6 +56,7 @@ namespace DangerousGame
             Player = new MainCharacter(Map);
             Player.Position.X = (400 - 16);
             Player.Position.Y = (300 - 16);
+            Console.Out.WriteLine("Player pos: " + Player.Position.X + ", Y: " + Player.Position.Y);
             Player.setAnimation(32, 46);
             Player.addAnimation("walkDown", new int[] { 1, 2 }, 4);
             Player.addAnimation("walkUp", new int[] { 4, 5 }, 4);
