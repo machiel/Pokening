@@ -20,6 +20,7 @@ namespace DangerousGame
         // All the tile images
         private Texture2D TileMap;
         private Texture2D mapImage;
+        private Texture2D obstacleMapImage;
 
         const int GRASSTILE = 0;
         const int DIRTTILE = 1;
