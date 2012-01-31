@@ -1,3 +1,4 @@
 c:\users\millerwindowslaptop\documents\visual studio 2010\Projects\DangerousGame\DangerousGame\DangerousGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\projects\pokening\DangerousGame\DangerousGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Arco\Pokening\DangerousGame\DangerousGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\projects\Pokening\DangerousGame\DangerousGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
