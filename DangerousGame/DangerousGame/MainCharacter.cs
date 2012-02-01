@@ -79,6 +79,7 @@ namespace DangerousGame
             Vector2 newPosition = Position + (Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
             if (!_Map.MayWalk(this, newPosition))
             {
+                Console.Out.WriteLine("HIT!");
                 Speed = Vector2.Zero;
                 Direction = Vector2.Zero;
             }

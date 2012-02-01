@@ -166,21 +166,32 @@ namespace DangerousGame
         /// <param name="newPosition">His new position</param>
         public bool MayWalk(Sprite obj1, Vector2 newPosition)
         {
+            /*
             int x = (int)newPosition.X;
             int y = (int)newPosition.Y + obj1.Size.Height;
             int width = obj1.Size.Width;
 
+            Console.Out.WriteLine("X: " + x + ", Y: " + y);
+
             // Since an Sprite can be at two x-tiles the same time, check those two
             int xTile1 = x / 50; // First x-tile, the most left one
             int xTile2 = (x + width) / 50; // Second x-tile, the most right one
-            int yTile = y / 50;
+            int yTile = y / 50;*/
+            Vector2 center = MainCharacter.getCenter();
+
+            int x = (int)(newPosition.X) / 50;
+            int y = (int)(newPosition.Y) / 50;
+
+            return !tiles[x][y].isObstacle();
+            
+
 
            // if (
                 //xTile1 == tiles.Length || xTile2 == tiles.Length || yTile == tiles[0].Length // Map boundaries, right and bottom
                // || xTile1 < 0 || xTile2 < 0 || yTile < 0 // Map boundaries, left and top (TODO not working really good, can still walk 1 tile outside the map)
               //  || tiles[xTile1][yTile] == DIRTTILE || this.tiles[xTile2][yTile] == DIRTTILE) // Check if object is on 'dirt' tile
                // return false;
-            return true;
+            //return true;
         }
     }
 }
