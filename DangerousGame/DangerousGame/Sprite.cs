@@ -58,8 +58,8 @@ namespace DangerousGame
                 int FramePosY = 0;
                 if (IsPlaying)
                 {
-                    FramePosY = (CurrentAnimation.getFrame() / (Texture.Width / FrameWidth)) * FrameHeight;
-                    FramePosX = (CurrentAnimation.getFrame() % (Texture.Width / FrameWidth)) * FrameWidth;
+                    FramePosY = (CurrentAnimation.GetFrame() / (Texture.Width / FrameWidth)) * FrameHeight;
+                    FramePosX = (CurrentAnimation.GetFrame() % (Texture.Width / FrameWidth)) * FrameWidth;
                 }
                 SpriteBatch.Draw(Texture, GetCenter(), new Rectangle(FramePosX, FramePosY, FrameWidth, FrameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
@@ -68,8 +68,8 @@ namespace DangerousGame
         public void Update(GameTime GameTime, Vector2 TheSpeed, Vector2 TheDirection)
         {
             if(IsPlaying)
-                if (GameTime.TotalGameTime.Ticks % (100 / CurrentAnimation.frameRate) == 0)
-                    CurrentAnimation.nextFrame();
+                if (GameTime.TotalGameTime.Ticks % (100 / CurrentAnimation.FrameRate) == 0)
+                    CurrentAnimation.NextFrame();
             Position += TheDirection * TheSpeed * (float)GameTime.ElapsedGameTime.TotalSeconds;
         }
 
@@ -104,7 +104,7 @@ namespace DangerousGame
         {
             foreach(Animation Animation in Animations)
             {
-                if (Animation.name == AnimationName)
+                if (Animation.Name == AnimationName)
                 {
                     CurrentAnimation = Animation;
                     IsPlaying = true;
