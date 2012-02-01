@@ -11,7 +11,7 @@ namespace DangerousGame
     {
         const string GRASS = "144233105";
         const string PATH = "254241154";
-        public string sort;
+        public string Sort;
 
         public const int TL = 1;
         public const int TM = 2;
@@ -22,53 +22,53 @@ namespace DangerousGame
         public const int BL = 7;
         public const int BM = 8;
         public const int BR = 9;
-        public int type;
-        private bool obstacle;
+        public int Type;
+        private bool Obstacle;
 
         // From top left to right bottom the number of which tile it is
-        public int tile;
+        public int TileType;
 
-        private Texture2D _TileMap;
+        private Texture2D TileMap;
 
-        public Tile(string color, int type, Texture2D _TileMap, bool obstacle)
+        public Tile(string Color, int Type, Texture2D TileMap, bool Obstacle)
         {
-            sort = color;
-            this.type = type;
-            this._TileMap = _TileMap;
-            this.obstacle = obstacle;
+            Sort = Color;
+            this.Type = Type;
+            this.TileMap = TileMap;
+            this.Obstacle = Obstacle;
 
-            if (sort == GRASS)
-                tile = 21;
-            else if (sort == PATH && type == TL)
-                tile = 3;
-            else if (sort == PATH && type == TM)
-                tile = 4;
-            else if (sort == PATH && type == TR)
-                tile = 5;
-            else if (sort == PATH && type == L)
-                tile = 13;
-            else if (sort == PATH && type == M)
-                tile = 14;
-            else if (sort == PATH && type == R)
-                tile = 15;
-            else if (sort == PATH && type == BL)
-                tile = 23;
-            else if (sort == PATH && type == BM)
-                tile = 24;
-            else if (sort == PATH && type == BR)
-                tile = 25;
+            if (Sort == GRASS)
+                TileType = 21;
+            else if (Sort == PATH && Type == TL)
+                TileType = 3;
+            else if (Sort == PATH && Type == TM)
+                TileType = 4;
+            else if (Sort == PATH && Type == TR)
+                TileType = 5;
+            else if (Sort == PATH && Type == L)
+                TileType = 13;
+            else if (Sort == PATH && Type == M)
+                TileType = 14;
+            else if (Sort == PATH && Type == R)
+                TileType = 15;
+            else if (Sort == PATH && Type == BL)
+                TileType = 23;
+            else if (Sort == PATH && Type == BM)
+                TileType = 24;
+            else if (Sort == PATH && Type == BR)
+                TileType = 25;
             
         }
 
-        public bool isObstacle()
+        public bool IsObstacle()
         {
-            return this.obstacle;
+            return this.Obstacle;
         }
 
-        public Rectangle getTile()
+        public Rectangle GetTile()
         {
-            int y = ((tile-1) / (_TileMap.Width / 50)) * 50;
-            int x = ((tile-1) % (_TileMap.Width / 50)) * 50;
+            int y = ((TileType-1) / (TileMap.Width / 50)) * 50;
+            int x = ((TileType-1) % (TileMap.Width / 50)) * 50;
             return new Rectangle(x, y, x + 50, y + 50);
         }
     }

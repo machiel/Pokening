@@ -18,28 +18,28 @@ namespace DangerousGame
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        GraphicsDeviceManager Graphics;
+        SpriteBatch SpriteBatch;
 
         MainCharacter Player;
 
         Map Map;
 
-        String displayText = "";
+        String DisplayText = "";
 
-        Boolean gamePaused = false;
+        Boolean GamePaused = false;
 
-        SpriteFont spriteFont;
+        SpriteFont SpriteFont;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.Window.Title = "Pokening";
 
             // Window size
-            this.graphics.PreferredBackBufferWidth = 800;
-            this.graphics.PreferredBackBufferHeight = 600;
+            this.Graphics.PreferredBackBufferWidth = 800;
+            this.Graphics.PreferredBackBufferHeight = 600;
             //this.graphics.IsFullScreen = true;
         }
 
@@ -57,11 +57,11 @@ namespace DangerousGame
             Player.Position.X = (400 - 16);
             Player.Position.Y = (300 - 16);
             Console.Out.WriteLine("Player pos: " + Player.Position.X + ", Y: " + Player.Position.Y);
-            Player.setAnimation(32, 46);
-            Player.addAnimation("walkDown", new int[] { 1, 2 }, 4);
-            Player.addAnimation("walkUp", new int[] { 4, 5 }, 4);
-            Player.addAnimation("walkLeft", new int[] { 7, 8 }, 5);
-            Player.addAnimation("walkRight", new int[] { 10, 11 }, 5);
+            Player.SetAnimation(32, 46);
+            Player.AddAnimation("walkDown", new int[] { 1, 2 }, 4);
+            Player.AddAnimation("walkUp", new int[] { 4, 5 }, 4);
+            Player.AddAnimation("walkLeft", new int[] { 7, 8 }, 5);
+            Player.AddAnimation("walkRight", new int[] { 10, 11 }, 5);
 
             base.Initialize();
         }
@@ -73,11 +73,11 @@ namespace DangerousGame
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
             Player.LoadContent(this.Content, "mainChar");
             Map.LoadTiles(this.Content, "tiles");
             Map.CreateMap(this.Content, "map-example");
-            spriteFont = Content.Load<SpriteFont>("Calibri");
+            SpriteFont = Content.Load<SpriteFont>("Calibri");
         }
 
         /// <summary>
@@ -93,58 +93,58 @@ namespace DangerousGame
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
+        /// <param name="GameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime GameTime)
         {
-            KeyboardState keyboardState = Keyboard.GetState();
+            KeyboardState KeyboardState = Keyboard.GetState();
 
             // Pausing game when hitting the escape key
-            if (keyboardState.IsKeyDown(Keys.Escape))
+            if (KeyboardState.IsKeyDown(Keys.Escape))
             {
-                if (gamePaused) gamePaused = false;
-                else gamePaused = true;
+                if (GamePaused) GamePaused = false;
+                else GamePaused = true;
             }
 
-            if(!gamePaused) { 
+            if(!GamePaused) { 
                 // Allows the game to exit
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                     this.Exit();
 
                 // Updating Pikachu
-                Player.Update(gameTime);
+                Player.Update(GameTime);
             }
             
             // Updating parent class
-            base.Update(gameTime);
+            base.Update(GameTime);
         }
 
-        private bool IntersectPixels(Sprite obj1Sprite, Sprite obj2Sprite)
+        private bool IntersectPixels(Sprite Object1, Sprite Object2)
         {
             // Getting the position and dimensions of both sprites
-            Rectangle obj1 = new Rectangle((int)obj1Sprite.Position.X, (int)obj1Sprite.Position.Y, obj1Sprite.Size.Width, obj1Sprite.Size.Height);
-            Rectangle obj2 = new Rectangle((int)obj2Sprite.Position.X, (int)obj2Sprite.Position.Y, obj2Sprite.Size.Width, obj2Sprite.Size.Height);
+            Rectangle rectangleObject1 = new Rectangle((int)Object1.Position.X, (int)Object1.Position.Y, Object1.Size.Width, Object1.Size.Height);
+            Rectangle rectangleObject2 = new Rectangle((int)Object2.Position.X, (int)Object2.Position.Y, Object2.Size.Width, Object2.Size.Height);
 
             // Getting the texture data from both sprites
-            Color[] obj1Texture = obj1Sprite.getTextureData();
-            Color[] obj2Texture = obj2Sprite.getTextureData();
+            Color[] ColorObject1 = Object1.GetTextureData();
+            Color[] ColorObject2 = Object2.GetTextureData();
 
             // Find the bounds of the rectangle intersection
-            int top = Math.Max(obj1.Top, obj2.Top);
-            int bottom = Math.Min(obj1.Bottom, obj2.Bottom);
-            int left = Math.Max(obj1.Left, obj2.Left);
-            int right = Math.Min(obj1.Right, obj2.Right);
+            int Top = Math.Max(rectangleObject1.Top, rectangleObject2.Top);
+            int Bottom = Math.Min(rectangleObject1.Bottom, rectangleObject2.Bottom);
+            int Left = Math.Max(rectangleObject1.Left, rectangleObject2.Left);
+            int Right = Math.Min(rectangleObject1.Right, rectangleObject2.Right);
 
             // Check every point within the intersection bounds
-            for (int y = top; y < bottom; y++)
+            for (int y = Top; y < Bottom; y++)
             {
-                for (int x = left; x < right; x++)
+                for (int x = Left; x < Right; x++)
                 {
                     // Get the color of both pixels at this point
-                    Color colorA = obj1Texture[(x - obj1.Left) + ((y - obj1.Top) * obj1.Width)];
-                    Color colorB = obj2Texture[(x - obj2.Left) + ((y - obj2.Top) * obj2.Width)];
+                    Color Color1 = ColorObject1[(x - rectangleObject1.Left) + ((y - rectangleObject1.Top) * rectangleObject1.Width)];
+                    Color Color2 = ColorObject2[(x - rectangleObject2.Left) + ((y - rectangleObject2.Top) * rectangleObject2.Width)];
 
                     // If both pixels are not completely transparent,
-                    if (colorA.A != 0 && colorB.A != 0)
+                    if (Color1.A != 0 && Color2.A != 0)
                     {
                         // Then an intersection has been found
                         return true;
@@ -163,12 +163,12 @@ namespace DangerousGame
             // Clearing the stag with specified color
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
-            Map.Draw(spriteBatch);
-            Player.Draw(spriteBatch);
+            SpriteBatch.Begin();
+            Map.Draw(SpriteBatch);
+            Player.Draw(SpriteBatch);
             
-            spriteBatch.DrawString(spriteFont, displayText, new Vector2(600, 10), Color.Black);
-            spriteBatch.End();
+            SpriteBatch.DrawString(SpriteFont, DisplayText, new Vector2(600, 10), Color.Black);
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -13,13 +13,13 @@ namespace DangerousGame
     class Map
     {
         // Array with tiles, what kind of tile on what position
-        public List<List<Tile>> tiles = new List<List<Tile>>();
+        public List<List<Tile>> Tiles = new List<List<Tile>>();
 
-        private Vector2 position = Vector2.Zero;
+        private Vector2 Position = Vector2.Zero;
 
         // All the tile images
         private Texture2D TileMap;
-        private Texture2D mapImage;
+        private Texture2D MapImage;
 
         const int GRASSTILE = 0;
         const int DIRTTILE = 1;
@@ -27,171 +27,133 @@ namespace DangerousGame
         /// <summary>
         /// Adds new content to the TileType array
         /// </summary>
-        public void LoadTiles(ContentManager contentManager, string theAsset)
+        public void LoadTiles(ContentManager ContentManager, string TheAsset)
         {
-            TileMap = contentManager.Load<Texture2D>(theAsset);
-            Color[] textureData = new Color[TileMap.Width * TileMap.Height];
-            TileMap.GetData(textureData);
+            TileMap = ContentManager.Load<Texture2D>(TheAsset);
+            Color[] TextureData = new Color[TileMap.Width * TileMap.Height];
+            TileMap.GetData(TextureData);
         }
 
         /// <summary>
         /// Adds new content to the TileType array
         /// </summary>
-        public void CreateMap(ContentManager contentManager, string theAsset)
+        public void CreateMap(ContentManager ContentManager, string TheAsset)
         {
-            mapImage = contentManager.Load<Texture2D>(theAsset);
-            Texture2D obstacleMap = contentManager.Load<Texture2D>(theAsset + "-obstacle");
-            Color[] textureData = new Color[mapImage.Width * mapImage.Height];
-            Color[] obstacleTextureData = new Color[mapImage.Width * mapImage.Height];
-            mapImage.GetData(textureData);
-            obstacleMap.GetData(obstacleTextureData);
+            MapImage = ContentManager.Load<Texture2D>(TheAsset);
+            Texture2D ObstacleMap = ContentManager.Load<Texture2D>(TheAsset + "-obstacle");
+            Color[] TextureData = new Color[MapImage.Width * MapImage.Height];
+            Color[] ObstacleTextureData = new Color[MapImage.Width * MapImage.Height];
+            MapImage.GetData(TextureData);
+            ObstacleMap.GetData(ObstacleTextureData);
 
             // Check every point within the intersection bounds
-            for (int x = 0; x < mapImage.Width; x++)
+            for (int x = 0; x < MapImage.Width; x++)
             {
-                tiles.Add(new List<Tile>());
-                for (int y = 0; y < mapImage.Height; y++)
+                Tiles.Add(new List<Tile>());
+                for (int y = 0; y < MapImage.Height; y++)
                 {
 
-                    bool isObstacle = false;
+                    bool IsObstacle = false;
 
                     // Get the color of both pixels at this point
-                    Color color = textureData[(x) + (y * mapImage.Width)];
-                    Color obstacleColor = obstacleTextureData[(x) + (y * mapImage.Width)]; 
-                    string colorString = color.R.ToString() + color.G.ToString() + color.B.ToString();
-                    string obstacleColorString = obstacleColor.R.ToString() + obstacleColor.G.ToString() + obstacleColor.B.ToString();
-                    //Console.Out.WriteLine(obstacleColorString);
+                    Color Color = TextureData[(x) + (y * MapImage.Width)];
+                    Color ObstacleColor = ObstacleTextureData[(x) + (y * MapImage.Width)]; 
+                    string ColorString = Color.R.ToString() + Color.G.ToString() + Color.B.ToString();
+                    string obstacleColorString = ObstacleColor.R.ToString() + ObstacleColor.G.ToString() + ObstacleColor.B.ToString();
+                    
+                    // If the color of this tile in the obstacle map is black
+                    // then this tile is an obstacle
                     if (obstacleColorString == "000")
                     {
-                        isObstacle = true;
-                        //Console.Out.WriteLine("Obstacle found");
-                    }
-                    else
-                    {
-                        //Console.Out.WriteLine("Obstacle not found");
+                        IsObstacle = true;
                     }
 
-                    Color tileTL = getTileColor(textureData, mapImage, (x - 1), (y - 1));
-                    Color tileTM = getTileColor(textureData, mapImage, x, (y - 1));
-                    Color tileTR = getTileColor(textureData, mapImage, (x + 1), (y - 1));
-                    Color tileL = getTileColor(textureData, mapImage, (x - 1), y);
-                    Color tileR = getTileColor(textureData, mapImage, (x + 1), y);
-                    Color tileBL = getTileColor(textureData, mapImage, (x - 1), (y + 1));
-                    Color tileBM = getTileColor(textureData, mapImage, x, (y + 1));
-                    Color tileBR = getTileColor(textureData, mapImage, (x + 1), (y + 1));
+                    Color tileTL = GetTileColor(TextureData, MapImage, (x - 1), (y - 1));
+                    Color tileTM = GetTileColor(TextureData, MapImage, x, (y - 1));
+                    Color tileTR = GetTileColor(TextureData, MapImage, (x + 1), (y - 1));
+                    Color tileL = GetTileColor(TextureData, MapImage, (x - 1), y);
+                    Color tileR = GetTileColor(TextureData, MapImage, (x + 1), y);
+                    Color tileBL = GetTileColor(TextureData, MapImage, (x - 1), (y + 1));
+                    Color tileBM = GetTileColor(TextureData, MapImage, x, (y + 1));
+                    Color tileBR = GetTileColor(TextureData, MapImage, (x + 1), (y + 1));
 
-                    int type;
-                    if (color != tileL && color != tileTM)
-                        type = Tile.TL;
-                    else if (color == tileL && color == tileR && color != tileTM)
-                        type = Tile.TM;
-                    else if (color != tileR && color != tileTM)
-                        type = Tile.TR;
-                    else if (color != tileL && color == tileTM && color == tileBM)
-                        type = Tile.L;
-                    else if (color != tileR && color == tileTM && color == tileBM)
-                        type = Tile.R;
-                    else if (color != tileL && color != tileBM)
-                        type = Tile.BL;
-                    else if (color == tileL && color == tileR && color != tileBM)
-                        type = Tile.BM;
-                    else if (color != tileR && color != tileBM)
-                        type = Tile.BR;
+                    int Type;
+                    if (Color != tileL && Color != tileTM)
+                        Type = Tile.TL;
+                    else if (Color == tileL && Color == tileR && Color != tileTM)
+                        Type = Tile.TM;
+                    else if (Color != tileR && Color != tileTM)
+                        Type = Tile.TR;
+                    else if (Color != tileL && Color == tileTM && Color == tileBM)
+                        Type = Tile.L;
+                    else if (Color != tileR && Color == tileTM && Color == tileBM)
+                        Type = Tile.R;
+                    else if (Color != tileL && Color != tileBM)
+                        Type = Tile.BL;
+                    else if (Color == tileL && Color == tileR && Color != tileBM)
+                        Type = Tile.BM;
+                    else if (Color != tileR && Color != tileBM)
+                        Type = Tile.BR;
                     else
-                        type = Tile.M;
+                        Type = Tile.M;
 
-                    tiles[x].Add(new Tile(colorString, type, TileMap, isObstacle));
+                    Tiles[x].Add(new Tile(ColorString, Type, TileMap, IsObstacle));
                 }
             }
         }
 
-        private Color getTileColor(Color[] textureData, Texture2D mapImage, int x, int y)
+        private Color GetTileColor(Color[] TextureData, Texture2D MapImage, int X, int Y)
         {
-            Color color;
-            if (x >= 0 && y >= 0 && x + (y * mapImage.Width) < textureData.Length)
-                color = textureData[(x + (y * mapImage.Width))];
+            Color Color;
+            if (X >= 0 && Y >= 0 && X + (Y * MapImage.Width) < TextureData.Length)
+                Color = TextureData[(X + (Y * MapImage.Width))];
             else
-                color = new Color();
-            return color;
+                Color = new Color();
+            return Color;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch SpriteBatch)
         {
 
-            Vector2 invPosition = position * -1;
+            Vector2 InversedPosition = Position * -1;
 
             // For each tile drawing the texture corresponding with that tile
-            for(int x = 0; x < tiles.Capacity; x++)
+            for(int X = 0; X < Tiles.Capacity; X++)
             {
-                int newX = x * 50;
-                for (int y = 0; y < tiles[x].Count; y++)
+                int NewX = X * 50;
+                for (int Y = 0; Y < Tiles[X].Count; Y++)
                 {
-                    Tile tTile = tiles[x][y];
-                    Rectangle tile = tTile.getTile();
+                    Tile Tile = Tiles[X][Y];
+                    Rectangle TileBoundaries = Tile.GetTile();
 
-                    int newY = y * 50;
+                    int NewY = Y * 50;
 
-                    Vector2 min = new Vector2(newX, newY) + invPosition;
-                    Vector2 max = new Vector2(newX + 50, newY + 50) + invPosition;
+                    Vector2 DrawLocation = new Vector2(NewX, NewY) + InversedPosition;
 
-                    if (MainCharacter.getCenter().X >= min.X && MainCharacter.getCenter().Y >= min.Y
-                        && MainCharacter.getCenter().X <= max.X && MainCharacter.getCenter().Y <= max.Y)
-                    {
-                        if (tTile.isObstacle())
-                        {
-                            //Console.Out.WriteLine("HIT");
-                        }
-                        else
-                        {
-                            //Console.Out.WriteLine("X: " + min.X + ", Y: " + min.Y);
-                            //Console.Out.WriteLine(tTile.sort);
-                        }
-                    }
-
-                    spriteBatch.Draw(TileMap, min, tile, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    SpriteBatch.Draw(TileMap, DrawLocation, TileBoundaries, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
                 }
             }
         }
 
-        public void setCenterPosition(Vector2 centerPoint)
+        public void SetCenterPosition(Vector2 CenterPoint)
         {
-            position.X = centerPoint.X - 400;
-            position.Y = centerPoint.Y - 300;
+            Position.X = CenterPoint.X - 400;
+            Position.Y = CenterPoint.Y - 300;
         }
 
         /// <summary>
         /// Checking or the given sprite can walk to the 'newPosition' he wants to go
         /// </summary>
-        /// <param name="obj1">The sprite</param>
-        /// <param name="newPosition">His new position</param>
-        public bool MayWalk(Sprite obj1, Vector2 newPosition)
+        /// <param name="NewPosition">His new position</param>
+        public bool MayWalk(Vector2 NewPosition)
         {
-            /*
-            int x = (int)newPosition.X;
-            int y = (int)newPosition.Y + obj1.Size.Height;
-            int width = obj1.Size.Width;
+            Vector2 CenterPoint = MainCharacter.GetCenter();
 
-            Console.Out.WriteLine("X: " + x + ", Y: " + y);
+            int x = (int)(NewPosition.X) / 50;
+            int y = (int)(NewPosition.Y) / 50;
 
-            // Since an Sprite can be at two x-tiles the same time, check those two
-            int xTile1 = x / 50; // First x-tile, the most left one
-            int xTile2 = (x + width) / 50; // Second x-tile, the most right one
-            int yTile = y / 50;*/
-            Vector2 center = MainCharacter.getCenter();
+            return !Tiles[x][y].IsObstacle();
 
-            int x = (int)(newPosition.X) / 50;
-            int y = (int)(newPosition.Y) / 50;
-
-            return !tiles[x][y].isObstacle();
-            
-
-
-           // if (
-                //xTile1 == tiles.Length || xTile2 == tiles.Length || yTile == tiles[0].Length // Map boundaries, right and bottom
-               // || xTile1 < 0 || xTile2 < 0 || yTile < 0 // Map boundaries, left and top (TODO not working really good, can still walk 1 tile outside the map)
-              //  || tiles[xTile1][yTile] == DIRTTILE || this.tiles[xTile2][yTile] == DIRTTILE) // Check if object is on 'dirt' tile
-               // return false;
-            //return true;
         }
     }
 }

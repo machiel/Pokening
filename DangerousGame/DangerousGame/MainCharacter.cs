@@ -13,79 +13,78 @@ namespace DangerousGame
     class MainCharacter : Sprite
     {
 
-        private int speed = 120;
+        private int Speed = 120;
         private Vector2 Direction = Vector2.Zero;
-        private Vector2 Speed = Vector2.Zero;
+        private Vector2 Velocity = Vector2.Zero;
 
         const int MOVE_UP = -1;
         const int MOVE_DOWN = 1;
         const int MOVE_RIGHT = 1;
         const int MOVE_LEFT = -1;
 
-        private Map _Map;
+        private Map Map;
 
         KeyboardState PreviousKeyboardState;
 
-        public MainCharacter (Map _Map)
+        public MainCharacter (Map Map)
         {
-            this._Map = _Map;
+            this.Map = Map;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime GameTime)
         {
             KeyboardState KeyboardState = Keyboard.GetState();
-            UpdateMovement(KeyboardState, gameTime);
+            UpdateMovement(KeyboardState, GameTime);
             PreviousKeyboardState = KeyboardState;
-            base.Update(gameTime, Speed, Direction);
+            base.Update(GameTime, Velocity, Direction);
         }
-        private void UpdateMovement(KeyboardState aCurrentKeyboardState, GameTime gameTime)
+        private void UpdateMovement(KeyboardState CurrentKeyboardState, GameTime GameTime)
         {
             // Reseting speed and direction
-            Speed = Vector2.Zero;
+            Velocity = Vector2.Zero;
             Direction = Vector2.Zero;
   
             // Left and Right arrow keys
-            if (aCurrentKeyboardState.IsKeyDown(Keys.Left))
+            if (CurrentKeyboardState.IsKeyDown(Keys.Left))
             {
-                Speed.X = speed;
+                Velocity.X = Speed;
                 Direction.X = MOVE_LEFT;
-                play("walkLeft");
+                Play("walkLeft");
             }
-            else if (aCurrentKeyboardState.IsKeyDown(Keys.Right))
+            else if (CurrentKeyboardState.IsKeyDown(Keys.Right))
             {
-                Speed.X = speed;
+                Velocity.X = Speed;
                 Direction.X = MOVE_RIGHT;
-                play("walkRight");
+                Play("walkRight");
             }
             
             if
-                (aCurrentKeyboardState.IsKeyDown(Keys.Up))
+                (CurrentKeyboardState.IsKeyDown(Keys.Up))
             {
-                Speed.Y = speed;
+                Velocity.Y = Speed;
                 Direction.Y = MOVE_UP;
-                play("walkUp");
+                Play("walkUp");
             }
-            else if (aCurrentKeyboardState.IsKeyDown(Keys.Down))
+            else if (CurrentKeyboardState.IsKeyDown(Keys.Down))
             {
-                Speed.Y = speed;
+                Velocity.Y = Speed;
                 Direction.Y = MOVE_DOWN;
-                play("walkDown");
+                Play("walkDown");
             }
 
-            if (Speed.Equals(Vector2.Zero))
-                stop();
+            if (Velocity.Equals(Vector2.Zero))
+                Stop();
             
 
-            Vector2 newPosition = Position + (Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            if (!_Map.MayWalk(this, newPosition))
+            Vector2 NewPosition = Position + (Direction * Velocity * (float)GameTime.ElapsedGameTime.TotalSeconds);
+            if (!Map.MayWalk(NewPosition))
             {
-                Console.Out.WriteLine("HIT!");
-                Speed = Vector2.Zero;
+                Velocity = Vector2.Zero;
                 Direction = Vector2.Zero;
             }
             else
             {
-                _Map.setCenterPosition(newPosition);
+                Map.SetCenterPosition(NewPosition);
             }
                 
 
