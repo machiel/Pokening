@@ -30,32 +30,32 @@ namespace DangerousGame
 
         private Texture2D TileMap;
 
-        public Tile(string Color, int Type, Texture2D TileMap, bool Obstacle)
+        public Tile(string color, int type, Texture2D tileMap, bool obstacle)
         {
-            Sort = Color;
-            this.Type = Type;
-            this.TileMap = TileMap;
-            this.Obstacle = Obstacle;
+            Sort = color;
+            this.Type = type;
+            this.TileMap = tileMap;
+            this.Obstacle = obstacle;
 
             if (Sort == GRASS)
                 TileType = 21;
-            else if (Sort == PATH && Type == TL)
+            else if (Sort == PATH && type == TL)
                 TileType = 3;
-            else if (Sort == PATH && Type == TM)
+            else if (Sort == PATH && type == TM)
                 TileType = 4;
-            else if (Sort == PATH && Type == TR)
+            else if (Sort == PATH && type == TR)
                 TileType = 5;
-            else if (Sort == PATH && Type == L)
+            else if (Sort == PATH && type == L)
                 TileType = 13;
-            else if (Sort == PATH && Type == M)
+            else if (Sort == PATH && type == M)
                 TileType = 14;
-            else if (Sort == PATH && Type == R)
+            else if (Sort == PATH && type == R)
                 TileType = 15;
-            else if (Sort == PATH && Type == BL)
+            else if (Sort == PATH && type == BL)
                 TileType = 23;
-            else if (Sort == PATH && Type == BM)
+            else if (Sort == PATH && type == BM)
                 TileType = 24;
-            else if (Sort == PATH && Type == BR)
+            else if (Sort == PATH && type == BR)
                 TileType = 25;
             
         }

@@ -26,32 +26,32 @@ namespace DangerousGame
 
         KeyboardState PreviousKeyboardState;
 
-        public MainCharacter (Map Map)
+        public MainCharacter (Map map)
         {
-            this.Map = Map;
+            this.Map = map;
         }
 
-        public void Update(GameTime GameTime)
+        public void Update(GameTime gameTime)
         {
             KeyboardState KeyboardState = Keyboard.GetState();
-            UpdateMovement(KeyboardState, GameTime);
+            UpdateMovement(KeyboardState, gameTime);
             PreviousKeyboardState = KeyboardState;
-            base.Update(GameTime, Velocity, Direction);
+            base.Update(gameTime, Velocity, Direction);
         }
-        private void UpdateMovement(KeyboardState CurrentKeyboardState, GameTime GameTime)
+        private void UpdateMovement(KeyboardState currentKeyboardState, GameTime gameTime)
         {
             // Reseting speed and direction
             Velocity = Vector2.Zero;
             Direction = Vector2.Zero;
   
             // Left and Right arrow keys
-            if (CurrentKeyboardState.IsKeyDown(Keys.Left))
+            if (currentKeyboardState.IsKeyDown(Keys.Left))
             {
                 Velocity.X = Speed;
                 Direction.X = MOVE_LEFT;
                 Play("walkLeft");
             }
-            else if (CurrentKeyboardState.IsKeyDown(Keys.Right))
+            else if (currentKeyboardState.IsKeyDown(Keys.Right))
             {
                 Velocity.X = Speed;
                 Direction.X = MOVE_RIGHT;
@@ -59,13 +59,13 @@ namespace DangerousGame
             }
             
             if
-                (CurrentKeyboardState.IsKeyDown(Keys.Up))
+                (currentKeyboardState.IsKeyDown(Keys.Up))
             {
                 Velocity.Y = Speed;
                 Direction.Y = MOVE_UP;
                 Play("walkUp");
             }
-            else if (CurrentKeyboardState.IsKeyDown(Keys.Down))
+            else if (currentKeyboardState.IsKeyDown(Keys.Down))
             {
                 Velocity.Y = Speed;
                 Direction.Y = MOVE_DOWN;
@@ -76,15 +76,15 @@ namespace DangerousGame
                 Stop();
             
 
-            Vector2 NewPosition = Position + (Direction * Velocity * (float)GameTime.ElapsedGameTime.TotalSeconds);
-            if (!Map.MayWalk(NewPosition))
+            Vector2 newPosition = Position + (Direction * Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            if (!Map.MayWalk(newPosition))
             {
                 Velocity = Vector2.Zero;
                 Direction = Vector2.Zero;
             }
             else
             {
-                Map.SetCenterPosition(NewPosition);
+                Map.SetCenterPosition(newPosition);
             }
                 
 

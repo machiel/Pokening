@@ -12,11 +12,11 @@ namespace DangerousGame
         public int FrameRate;
         public int CurrentFrame;
 
-        public Animation(string Name, int[] Frames, int FrameRate)
+        public Animation(string name, int[] frames, int frameRate)
         {
-            this.Name = Name;
-            this.Frames = Frames;
-            this.FrameRate = FrameRate;
+            this.Name = name;
+            this.Frames = frames;
+            this.FrameRate = frameRate;
             this.CurrentFrame = 0;
         }
 

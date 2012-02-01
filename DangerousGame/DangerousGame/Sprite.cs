@@ -25,9 +25,9 @@ namespace DangerousGame
 
         protected ArrayList Animations = new ArrayList();
 
-        public void LoadContent(ContentManager ContentManager, string TheAsset)
+        public void LoadContent(ContentManager contentManager, string theAsset)
         {
-            Texture = ContentManager.Load<Texture2D>(TheAsset);
+            Texture = contentManager.Load<Texture2D>(theAsset);
             Size = new Rectangle(0, 0, (int) (Texture.Width * Scale), (int) (Texture.Height * Scale));
             TextureData = new Color[Texture.Width * Texture.Height];
             Texture.GetData(TextureData);
@@ -48,65 +48,65 @@ namespace DangerousGame
             return new Vector2(400 - 16, 300 - 16);
         }
 
-        public void Draw(SpriteBatch SpriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             if (!IsAnimated)
-                SpriteBatch.Draw(Texture, Position, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(Texture, Position, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             else
             {
-                int FramePosX = 0;
-                int FramePosY = 0;
+                int framePosX = 0;
+                int framePosY = 0;
                 if (IsPlaying)
                 {
-                    FramePosY = (CurrentAnimation.GetFrame() / (Texture.Width / FrameWidth)) * FrameHeight;
-                    FramePosX = (CurrentAnimation.GetFrame() % (Texture.Width / FrameWidth)) * FrameWidth;
+                    framePosY = (CurrentAnimation.GetFrame() / (Texture.Width / FrameWidth)) * FrameHeight;
+                    framePosX = (CurrentAnimation.GetFrame() % (Texture.Width / FrameWidth)) * FrameWidth;
                 }
-                SpriteBatch.Draw(Texture, GetCenter(), new Rectangle(FramePosX, FramePosY, FrameWidth, FrameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(Texture, GetCenter(), new Rectangle(framePosX, framePosY, FrameWidth, FrameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
         }
 
-        public void Update(GameTime GameTime, Vector2 TheSpeed, Vector2 TheDirection)
+        public void Update(GameTime gameTime, Vector2 theSpeed, Vector2 theDirection)
         {
             if(IsPlaying)
-                if (GameTime.TotalGameTime.Ticks % (100 / CurrentAnimation.FrameRate) == 0)
+                if (gameTime.TotalGameTime.Ticks % (100 / CurrentAnimation.FrameRate) == 0)
                     CurrentAnimation.NextFrame();
-            Position += TheDirection * TheSpeed * (float)GameTime.ElapsedGameTime.TotalSeconds;
+            Position += theDirection * theSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         /// <summary>
         /// Makes the sprite an animation.
         /// </summary>
-        /// <param name="FrameWidth">The width of one frame of the animation sprite</param>
-        /// <param name="FrameHeight">The height of one frame of the animation sprite</param>
-        public void SetAnimation(int FrameWidth, int FrameHeight)
+        /// <param name="frameWidth">The width of one frame of the animation sprite</param>
+        /// <param name="frameHeight">The height of one frame of the animation sprite</param>
+        public void SetAnimation(int frameWidth, int frameHeight)
         {
             IsAnimated = true;
-            this.FrameWidth = FrameWidth;
-            this.FrameHeight = FrameHeight;
+            this.FrameWidth = frameWidth;
+            this.FrameHeight = frameHeight;
         }
 
         /// <summary>
         /// Add an animation to the sprite
         /// </summary>
-        /// <param name="Name">The name of the animation</param>
-        /// <param name="Frames">What frames of the sprite will be used in this animation (i.e. int[2,3,4,8]</param>
-        /// <param name="FrameRate">How many times in a second the animation should procceed to the next frame</param>
-        public void AddAnimation(string Name, int[] Frames, int FrameRate)
+        /// <param name="name">The name of the animation</param>
+        /// <param name="frames">What frames of the sprite will be used in this animation (i.e. int[2,3,4,8]</param>
+        /// <param name="frameRate">How many times in a second the animation should procceed to the next frame</param>
+        public void AddAnimation(string name, int[] frames, int frameRate)
         {
-            Animations.Add(new Animation(Name, Frames, FrameRate));
+            Animations.Add(new Animation(name, frames, frameRate));
         }
 
         /// <summary>
         /// Start an already defined animation by name
         /// </summary>
-        /// <param name="AnimationName">Name of the animation to start</param>
-        public void Play(string AnimationName)
+        /// <param name="animationName">Name of the animation to start</param>
+        public void Play(string animationName)
         {
-            foreach(Animation Animation in Animations)
+            foreach(Animation animation in Animations)
             {
-                if (Animation.Name == AnimationName)
+                if (animation.Name == animationName)
                 {
-                    CurrentAnimation = Animation;
+                    CurrentAnimation = animation;
                     IsPlaying = true;
                 }
             }

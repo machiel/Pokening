@@ -20,16 +20,13 @@ namespace DangerousGame
     {
         GraphicsDeviceManager Graphics;
         SpriteBatch SpriteBatch;
-
         MainCharacter Player;
-
         Map Map;
-
         String DisplayText = "";
-
         Boolean GamePaused = false;
-
         SpriteFont SpriteFont;
+
+        const int WindowWidth = 800;
 
         public Game1()
         {
@@ -93,8 +90,8 @@ namespace DangerousGame
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
-        /// <param name="GameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime GameTime)
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime gameTime)
         {
             KeyboardState KeyboardState = Keyboard.GetState();
 
@@ -111,40 +108,40 @@ namespace DangerousGame
                     this.Exit();
 
                 // Updating Pikachu
-                Player.Update(GameTime);
+                Player.Update(gameTime);
             }
             
             // Updating parent class
-            base.Update(GameTime);
+            base.Update(gameTime);
         }
 
-        private bool IntersectPixels(Sprite Object1, Sprite Object2)
+        private bool IntersectPixels(Sprite object1, Sprite object2)
         {
             // Getting the position and dimensions of both sprites
-            Rectangle rectangleObject1 = new Rectangle((int)Object1.Position.X, (int)Object1.Position.Y, Object1.Size.Width, Object1.Size.Height);
-            Rectangle rectangleObject2 = new Rectangle((int)Object2.Position.X, (int)Object2.Position.Y, Object2.Size.Width, Object2.Size.Height);
+            Rectangle rectangleObject1 = new Rectangle((int)object1.Position.X, (int)object1.Position.Y, object1.Size.Width, object1.Size.Height);
+            Rectangle rectangleObject2 = new Rectangle((int)object2.Position.X, (int)object2.Position.Y, object2.Size.Width, object2.Size.Height);
 
             // Getting the texture data from both sprites
-            Color[] ColorObject1 = Object1.GetTextureData();
-            Color[] ColorObject2 = Object2.GetTextureData();
+            Color[] colorObject1 = object1.GetTextureData();
+            Color[] colorObject2 = object2.GetTextureData();
 
             // Find the bounds of the rectangle intersection
-            int Top = Math.Max(rectangleObject1.Top, rectangleObject2.Top);
-            int Bottom = Math.Min(rectangleObject1.Bottom, rectangleObject2.Bottom);
-            int Left = Math.Max(rectangleObject1.Left, rectangleObject2.Left);
-            int Right = Math.Min(rectangleObject1.Right, rectangleObject2.Right);
+            int top = Math.Max(rectangleObject1.Top, rectangleObject2.Top);
+            int bottom = Math.Min(rectangleObject1.Bottom, rectangleObject2.Bottom);
+            int left = Math.Max(rectangleObject1.Left, rectangleObject2.Left);
+            int right = Math.Min(rectangleObject1.Right, rectangleObject2.Right);
 
             // Check every point within the intersection bounds
-            for (int y = Top; y < Bottom; y++)
+            for (int y = top; y < bottom; y++)
             {
-                for (int x = Left; x < Right; x++)
+                for (int x = left; x < right; x++)
                 {
                     // Get the color of both pixels at this point
-                    Color Color1 = ColorObject1[(x - rectangleObject1.Left) + ((y - rectangleObject1.Top) * rectangleObject1.Width)];
-                    Color Color2 = ColorObject2[(x - rectangleObject2.Left) + ((y - rectangleObject2.Top) * rectangleObject2.Width)];
+                    Color color1 = colorObject1[(x - rectangleObject1.Left) + ((y - rectangleObject1.Top) * rectangleObject1.Width)];
+                    Color color2 = colorObject2[(x - rectangleObject2.Left) + ((y - rectangleObject2.Top) * rectangleObject2.Width)];
 
                     // If both pixels are not completely transparent,
-                    if (Color1.A != 0 && Color2.A != 0)
+                    if (color1.A != 0 && color2.A != 0)
                     {
                         // Then an intersection has been found
                         return true;
