@@ -45,7 +45,7 @@ namespace DangerousGame
 
         public static Vector2 GetCenter()
         {
-            return new Vector2(400 - 16, 300 - 16);
+            return new Vector2((Properties.WindowWidth - Properties.MainCharacterWidth) / 2, (Properties.WindowHeight - Properties.MainCharacterHeight) / 2);
         }
 
         public void Draw(SpriteBatch spriteBatch)

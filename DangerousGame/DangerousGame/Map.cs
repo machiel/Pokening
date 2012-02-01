@@ -120,13 +120,13 @@ namespace DangerousGame
             // For each tile drawing the texture corresponding with that tile
             for(int x = 0; x < Tiles.Capacity; x++)
             {
-                int newX = x * 50;
+                int newX = x * Properties.TileWidth;
                 for (int Y = 0; Y < Tiles[x].Count; Y++)
                 {
                     Tile tile = Tiles[x][Y];
                     Rectangle tileBoundaries = tile.GetTile();
 
-                    int newY = Y * 50;
+                    int newY = Y * Properties.TileHeight;
 
                     Vector2 drawLocation = new Vector2(newX, newY) + inversedPosition;
 
@@ -137,8 +137,8 @@ namespace DangerousGame
 
         public void SetCenterPosition(Vector2 centerPoint)
         {
-            Position.X = centerPoint.X - 400;
-            Position.Y = centerPoint.Y - 300;
+            Position.X = centerPoint.X - (Properties.WindowWidth / 2);
+            Position.Y = centerPoint.Y - (Properties.WindowHeight / 2);
         }
 
         /// <summary>
@@ -149,8 +149,8 @@ namespace DangerousGame
         {
             Vector2 CenterPoint = MainCharacter.GetCenter();
 
-            int x = (int)(newPosition.X) / 50;
-            int y = (int)(newPosition.Y) / 50;
+            int x = (int)(newPosition.X) / Properties.TileWidth;
+            int y = (int)(newPosition.Y) / Properties.TileHeight;
 
             return !Tiles[x][y].IsObstacle();
 

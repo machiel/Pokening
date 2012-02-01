@@ -67,9 +67,9 @@ namespace DangerousGame
 
         public Rectangle GetTile()
         {
-            int y = ((TileType-1) / (TileMap.Width / 50)) * 50;
-            int x = ((TileType-1) % (TileMap.Width / 50)) * 50;
-            return new Rectangle(x, y, x + 50, y + 50);
+            int y = ((TileType - 1) / (TileMap.Width / Properties.TileHeight)) * Properties.TileHeight;
+            int x = ((TileType - 1) % (TileMap.Width / Properties.TileWidth)) * Properties.TileWidth;
+            return new Rectangle(x, y, x + Properties.TileWidth, y + Properties.TileHeight);
         }
     }
 }
