@@ -11,6 +11,7 @@ namespace DangerousGame
     {
         const string GRASS = "144233105";
         const string PATH = "254241154";
+        const string HOUSE = "000000000";
         public string sort;
 
         public const int TL = 1;
@@ -35,6 +36,8 @@ namespace DangerousGame
             this.type = type;
             this._TileMap = _TileMap;
 
+            Console.Out.WriteLine(color);
+
             if (sort == GRASS)
                 tile = 21;
             else if (sort == PATH && type == TL)
@@ -55,6 +58,8 @@ namespace DangerousGame
                 tile = 24;
             else if (sort == PATH && type == BR)
                 tile = 25;
+            else if (sort == HOUSE)
+                tile = 48;
             
         }
 

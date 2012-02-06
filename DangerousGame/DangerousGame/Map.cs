@@ -100,7 +100,7 @@ namespace DangerousGame
         public void Draw(SpriteBatch spriteBatch)
         {
             // For each tile drawing the texture corresponding with that tile
-            for(int x = 0; x < tiles.Capacity; x++)
+            for (int x = 0; x < tiles.Count; x++)
             {
                 for (int y = 0; y < tiles[x].Count; y++)
                 {
