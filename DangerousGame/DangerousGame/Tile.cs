@@ -16,6 +16,13 @@ namespace DangerousGame
         const string FOREST = "7516137";
         public string Sort;
 
+        public enum TileProperties
+        {
+            Aggressive,
+            Obstacle,
+            Normal
+        };
+
         public const int TL = 1;
         public const int TM = 2;
         public const int TR = 3;
@@ -26,7 +33,7 @@ namespace DangerousGame
         public const int BM = 8;
         public const int BR = 9;
         public int Type;
-        private bool Obstacle;
+        private TileProperties Property;
 
         public const string DOOR = "1901430";
         public const string WINDOW = "174189124";
@@ -38,12 +45,12 @@ namespace DangerousGame
 
         private Texture2D TileMap;
 
-        public Tile(string color, int type, Texture2D tileMap, bool obstacle, string objectColor)
+        public Tile(string color, int type, Texture2D tileMap, TileProperties obstacle, string objectColor)
         {
             this.Sort = color;
             this.Type = type;
             this.TileMap = tileMap;
-            this.Obstacle = obstacle;
+            this.Property = obstacle;
             this.objectColor = objectColor;
 
             if (Sort == GRASS)
@@ -99,7 +106,7 @@ namespace DangerousGame
 
         public bool IsObstacle()
         {
-            return this.Obstacle;
+            return this.Property == TileProperties.Obstacle;
         }
 
         public Rectangle GetTile()

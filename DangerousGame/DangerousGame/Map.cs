@@ -61,7 +61,7 @@ namespace DangerousGame
                 for (int y = 0; y < MapImage.Height; y++)
                 {
 
-                    bool isObstacle = false;
+                    Tile.TileProperties tileProperty;
 
                     // Get the color of both pixels at this point
                     Color color = textureData[(x) + (y * MapImage.Width)];
@@ -75,7 +75,9 @@ namespace DangerousGame
                     // If the color of this tile in the obstacle map is black
                     // then this tile is an obstacle
                     if (obstacleColorString == "000")
-                        isObstacle = true;
+                        tileProperty = Tile.TileProperties.Obstacle;
+                    else
+                        tileProperty = Tile.TileProperties.Normal;
 
                     Color tileTL = GetTileColor(textureData, MapImage, (x - 1), (y - 1));
                     Color tileTM = GetTileColor(textureData, MapImage, x, (y - 1));
@@ -106,7 +108,7 @@ namespace DangerousGame
                     else
                         type = Tile.M;
 
-                    Tiles[x].Add(new Tile(colorString, Type, TileMap, isObstacle, objectsColorString));
+                    Tiles[x].Add(new Tile(colorString, type, TileMap, isObstacle, objectsColorString));
                 }
             }
         }
