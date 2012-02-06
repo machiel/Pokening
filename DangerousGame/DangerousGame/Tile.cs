@@ -9,11 +9,6 @@ namespace DangerousGame
 {
     class Tile
     {
-        const string GRASS = "144233105";
-        const string PATH = "254241154";
-        const string ROOF = "2327777";
-        const string WALL = "255255255";
-        const string FOREST = "7516137";
         public string Sort;
 
         public enum TileProperties
@@ -35,8 +30,6 @@ namespace DangerousGame
         public int Type;
         private TileProperties Property;
 
-        public const string DOOR = "1901430";
-        public const string WINDOW = "174189124";
         public string objectColor;
         public int ObjectType;
 
@@ -53,60 +46,65 @@ namespace DangerousGame
             this.Property = obstacle;
             this.objectColor = objectColor;
 
-            if (Sort == GRASS)
+            if (Sort == Properties.TileColorCodes.Grass)
                 TileType = 21;
-            else if (Sort == PATH && type == TL)
+            else if (Sort == Properties.TileColorCodes.Path && type == TL)
                 TileType = 3;
-            else if (Sort == PATH && type == TM)
+            else if (Sort == Properties.TileColorCodes.Path && type == TM)
                 TileType = 4;
-            else if (Sort == PATH && type == TR)
+            else if (Sort == Properties.TileColorCodes.Path && type == TR)
                 TileType = 5;
-            else if (Sort == PATH && type == L)
+            else if (Sort == Properties.TileColorCodes.Path && type == L)
                 TileType = 13;
-            else if (Sort == PATH && type == M)
+            else if (Sort == Properties.TileColorCodes.Path && type == M)
                 TileType = 14;
-            else if (Sort == PATH && type == R)
+            else if (Sort == Properties.TileColorCodes.Path && type == R)
                 TileType = 15;
-            else if (Sort == PATH && type == BL)
+            else if (Sort == Properties.TileColorCodes.Path && type == BL)
                 TileType = 23;
-            else if (Sort == PATH && type == BM)
+            else if (Sort == Properties.TileColorCodes.Path && type == BM)
                 TileType = 24;
-            else if (Sort == PATH && type == BR)
+            else if (Sort == Properties.TileColorCodes.Path && type == BR)
                 TileType = 25;
-            else if (Sort == ROOF && type == BM)
+            else if (Sort == Properties.TileColorCodes.Roof && type == BM)
                 TileType = 28;
-            else if (Sort == ROOF && type == BL)
+            else if (Sort == Properties.TileColorCodes.Roof && type == BL)
                 TileType = 26;
-            else if (Sort == ROOF && type == BR)
+            else if (Sort == Properties.TileColorCodes.Roof && type == BR)
                 TileType = 30;
-            else if (Sort == ROOF && (type == TL || type == TM || type == TR))
+            else if (Sort == Properties.TileColorCodes.Roof && (type == TL || type == TM || type == TR))
                 TileType = 8;
-            else if (Sort == ROOF)
+            else if (Sort == Properties.TileColorCodes.Roof)
                 TileType = 18;
-            else if (Sort == WALL && type == BL)
+            else if (Sort == Properties.TileColorCodes.Wall && type == BL)
                 TileType = 36;
-            else if (Sort == WALL && type == BR)
+            else if (Sort == Properties.TileColorCodes.Wall && type == BR)
                 TileType = 40;
-            else if (Sort == WALL && type == BM)
+            else if (Sort == Properties.TileColorCodes.Wall && type == BM)
                 TileType = 38;
-            else if (Sort == WALL && (type == M || type == TM))
+            else if (Sort == Properties.TileColorCodes.Wall && (type == M || type == TM))
                 TileType = 27;
-            else if (Sort == WALL && (type == L || type == TL))
+            else if (Sort == Properties.TileColorCodes.Wall && (type == L || type == TL))
                 TileType = 19;
-            else if (Sort == WALL && (type == R || type == TR))
+            else if (Sort == Properties.TileColorCodes.Wall && (type == R || type == TR))
                 TileType = 29;
-            else if (Sort == FOREST)
+            else if (Sort == Properties.TileColorCodes.Forest)
                 TileType = 31;
 
-            if (objectColor == WINDOW)
+            if (objectColor == Properties.TileColorCodes.Window)
                 ObjectType = 1;
-            else if (objectColor == DOOR)
+            else if (objectColor == Properties.TileColorCodes.Door)
                 ObjectType = 2;
         }
 
         public bool IsObstacle()
         {
             return this.Property == TileProperties.Obstacle;
+        }
+
+        public TileProperties GetProperty()
+        {
+            return Property;
         }
 
         public Rectangle GetTile()

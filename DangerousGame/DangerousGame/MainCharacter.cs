@@ -95,7 +95,7 @@ namespace DangerousGame
             //foreach (Keys key in pressedKeys)
             //    Console.Out.WriteLine(key);
 
-            Console.Out.WriteLine(pressedKeys.Count);
+            //Console.Out.WriteLine(pressedKeys.Count);
 
             if (lastPressedKey == Keys.Left)
             {
@@ -134,7 +134,13 @@ namespace DangerousGame
                 Direction = Vector2.Zero;
             }
             else
+            {
+                if (Map.AttackStarted(newPosition))
+                {
+                    Console.Out.WriteLine("Pikachu, I choose you!");
+                }
                 Map.SetCenterPosition(newPosition);
+            }
         }
 
         public void setPosition(Vector2 value)

@@ -153,6 +153,11 @@ namespace DangerousGame
             return false;
         }
 
+        public void SetGamePaused()
+        {
+            this.GamePaused = true;
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>

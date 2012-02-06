@@ -71,12 +71,12 @@ namespace DangerousGame
                     string colorString = color.R.ToString() + color.G.ToString() + color.B.ToString();
                     string obstacleColorString = obstacleColor.R.ToString() + obstacleColor.G.ToString() + obstacleColor.B.ToString();
                     string objectsColorString = objectsColor.R.ToString() + objectsColor.G.ToString() + objectsColor.B.ToString();
-                    
+
                     // If the color of this tile in the obstacle map is black
                     // then this tile is an obstacle
-                    if (obstacleColorString == "000")
+                    if (obstacleColorString == Properties.TileColorCodes.Obstacle)
                         tileProperty = Tile.TileProperties.Obstacle;
-                    else if (obstacleColorString == "2550255")
+                    else if (obstacleColorString == Properties.TileColorCodes.Aggressive)
                         tileProperty = Tile.TileProperties.Aggressive;
                     else
                         tileProperty = Tile.TileProperties.Normal;
@@ -167,19 +167,37 @@ namespace DangerousGame
             Position.Y = centerPoint.Y - (Properties.WindowHeight / 2);
         }
 
+        private Tile GetTileFromPosition(Vector2 pos)
+        {
+            int x = (int)(pos.X) / Properties.TileWidth;
+            int y = (int)(pos.Y) / Properties.TileHeight;
+            return Tiles[x][y];
+        }
+
         /// <summary>
         /// Checking or the given sprite can walk to the 'newPosition' he wants to go
         /// </summary>
         /// <param name="newPosition">His new position</param>
         public bool MayWalk(Vector2 newPosition)
         {
-            Vector2 CenterPoint = MainCharacter.GetCenter();
 
-            int x = (int)(newPosition.X) / Properties.TileWidth;
-            int y = (int)(newPosition.Y) / Properties.TileHeight;
+            Tile tile = GetTileFromPosition(newPosition);
+            return !tile.IsObstacle();
 
-            return !Tiles[x][y].IsObstacle();
+        }
 
+        public bool AttackStarted(Vector2 newPosition)
+        {
+            Tile tile = GetTileFromPosition(newPosition);
+
+            if (tile.GetProperty() == Tile.TileProperties.Aggressive)
+            {
+                Random random = new Random();
+                int chance = random.Next(0, 100);
+                return chance == 23;
+            }
+
+            return false;
         }
     }
 }
