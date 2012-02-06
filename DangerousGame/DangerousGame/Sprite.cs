@@ -15,61 +15,61 @@ namespace DangerousGame
         public Rectangle Size;
         public float Scale = 1.0f;
         protected Texture2D Texture;
-        protected Color[] textureData;
+        protected Color[] TextureData;
 
-        protected bool isAnimated = false;
-        protected bool isPlaying = false;
-        protected int frameWidth;
-        protected int frameHeight;
-        protected Animation currentAnimation;
+        protected bool IsAnimated = false;
+        protected bool IsPlaying = false;
+        protected int FrameWidth;
+        protected int FrameHeight;
+        protected Animation CurrentAnimation;
 
-        protected ArrayList animations = new ArrayList();
+        protected ArrayList Animations = new ArrayList();
 
         public void LoadContent(ContentManager contentManager, string theAsset)
         {
             Texture = contentManager.Load<Texture2D>(theAsset);
             Size = new Rectangle(0, 0, (int) (Texture.Width * Scale), (int) (Texture.Height * Scale));
-            textureData = new Color[Texture.Width * Texture.Height];
-            Texture.GetData(textureData);
+            TextureData = new Color[Texture.Width * Texture.Height];
+            Texture.GetData(TextureData);
         }
 
-        public Rectangle getRectangle()
+        public Rectangle GetRectangle()
         {
             return Size;
         }
 
-        public Color[] getTextureData()
+        public Color[] GetTextureData()
         {
-            return textureData;
+            return TextureData;
         }
 
-        public Vector2 getCenter()
+        public static Vector2 GetCenter()
         {
-            return new Vector2(400 - 16, 300 - 16);
+            return new Vector2((Properties.WindowWidth - Properties.MainCharacterWidth) / 2, (Properties.WindowHeight - Properties.MainCharacterHeight) / 2);
         }
 
-        public void Draw(SpriteBatch SpriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isAnimated)
-                SpriteBatch.Draw(Texture, Position, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+            if (!IsAnimated)
+                spriteBatch.Draw(Texture, Position, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             else
             {
                 int framePosX = 0;
                 int framePosY = 0;
-                if (isPlaying)
+                if (IsPlaying)
                 {
-                    framePosY = (currentAnimation.getFrame() / (Texture.Width / frameWidth)) * frameHeight;
-                    framePosX = (currentAnimation.getFrame() % (Texture.Width / frameWidth)) * frameWidth;
+                    framePosY = (CurrentAnimation.GetFrame() / (Texture.Width / FrameWidth)) * FrameHeight;
+                    framePosX = (CurrentAnimation.GetFrame() % (Texture.Width / FrameWidth)) * FrameWidth;
                 }
-                SpriteBatch.Draw(Texture, getCenter(), new Rectangle(framePosX, framePosY, frameWidth, frameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(Texture, GetCenter(), new Rectangle(framePosX, framePosY, FrameWidth, FrameHeight), Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
         }
 
         public void Update(GameTime gameTime, Vector2 theSpeed, Vector2 theDirection)
         {
-            if(isPlaying)
-                if (gameTime.TotalGameTime.Ticks % (100 / currentAnimation.frameRate) == 0)
-                    currentAnimation.nextFrame();
+            if(IsPlaying)
+                if (gameTime.TotalGameTime.Ticks % (100 / CurrentAnimation.FrameRate) == 0)
+                    CurrentAnimation.NextFrame();
             Position += theDirection * theSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
@@ -78,11 +78,11 @@ namespace DangerousGame
         /// </summary>
         /// <param name="frameWidth">The width of one frame of the animation sprite</param>
         /// <param name="frameHeight">The height of one frame of the animation sprite</param>
-        public void setAnimation(int frameWidth, int frameHeight)
+        public void SetAnimation(int frameWidth, int frameHeight)
         {
-            isAnimated = true;
-            this.frameWidth = frameWidth;
-            this.frameHeight = frameHeight;
+            IsAnimated = true;
+            this.FrameWidth = frameWidth;
+            this.FrameHeight = frameHeight;
         }
 
         /// <summary>
@@ -91,23 +91,23 @@ namespace DangerousGame
         /// <param name="name">The name of the animation</param>
         /// <param name="frames">What frames of the sprite will be used in this animation (i.e. int[2,3,4,8]</param>
         /// <param name="frameRate">How many times in a second the animation should procceed to the next frame</param>
-        public void addAnimation(string name, int[] frames, int frameRate)
+        public void AddAnimation(string name, int[] frames, int frameRate)
         {
-            animations.Add(new Animation(name, frames, frameRate));
+            Animations.Add(new Animation(name, frames, frameRate));
         }
 
         /// <summary>
         /// Start an already defined animation by name
         /// </summary>
         /// <param name="animationName">Name of the animation to start</param>
-        public void play(string animationName)
+        public void Play(string animationName)
         {
-            foreach(Animation animation in animations)
+            foreach(Animation animation in Animations)
             {
-                if (animation.name == animationName)
+                if (animation.Name == animationName)
                 {
-                    currentAnimation = animation;
-                    isPlaying = true;
+                    CurrentAnimation = animation;
+                    IsPlaying = true;
                 }
             }
         }
@@ -116,9 +116,9 @@ namespace DangerousGame
         /// Stops the current animation with playing. Makes the sprite returns to
         /// its first frame
         /// </summary>
-        public void stop()
+        public void Stop()
         {
-            isPlaying = false;
+            IsPlaying = false;
         }
     }
 }

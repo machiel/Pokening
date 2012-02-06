@@ -11,7 +11,10 @@ namespace DangerousGame
     {
         const string GRASS = "144233105";
         const string PATH = "254241154";
-        const string HOUSE = "000000000";
+        const string ROOF = "2327777";
+        const string WALL = "255255255";
+        const string FOREST = "7516137";
+        
         public string sort;
 
         public const int TL = 1;
@@ -23,51 +26,77 @@ namespace DangerousGame
         public const int BL = 7;
         public const int BM = 8;
         public const int BR = 9;
-        public int type;
+        public int Type;
+        private bool Obstacle;
 
         // From top left to right bottom the number of which tile it is
-        public int tile;
+        public int TileType;
 
-        private Texture2D _TileMap;
+        private Texture2D TileMap;
 
-        public Tile(string color, int type, Texture2D _TileMap)
+        public Tile(string color, int type, Texture2D tileMap, bool obstacle)
         {
-            sort = color;
-            this.type = type;
-            this._TileMap = _TileMap;
-
-            Console.Out.WriteLine(color);
+            this.sort = color;
+            this.Type = type;
+            this.TileMap = tileMap;
+            this.Obstacle = obstacle;
 
             if (sort == GRASS)
-                tile = 21;
+                TileType = 21;
             else if (sort == PATH && type == TL)
-                tile = 3;
+                TileType = 3;
             else if (sort == PATH && type == TM)
-                tile = 4;
+                TileType = 4;
             else if (sort == PATH && type == TR)
-                tile = 5;
+                TileType = 5;
             else if (sort == PATH && type == L)
-                tile = 13;
+                TileType = 13;
             else if (sort == PATH && type == M)
-                tile = 14;
+                TileType = 14;
             else if (sort == PATH && type == R)
-                tile = 15;
+                TileType = 15;
             else if (sort == PATH && type == BL)
-                tile = 23;
+                TileType = 23;
             else if (sort == PATH && type == BM)
-                tile = 24;
+                TileType = 24;
             else if (sort == PATH && type == BR)
-                tile = 25;
-            else if (sort == HOUSE)
-                tile = 48;
-            
+                TileType = 25;
+            else if (sort == ROOF && type == BM)
+                TileType = 28;
+            else if (sort == ROOF && type == BL)
+                TileType = 26;
+            else if (sort == ROOF && type == BR)
+                TileType = 30;
+            else if (sort == ROOF && (type == TL || type == TM || type == TR))
+                TileType = 8;
+            else if (sort == ROOF)
+                TileType = 18;
+            else if (sort == WALL && type == BL)
+                TileType = 36;
+            else if (sort == WALL && type == BR)
+                TileType = 40;
+            else if (sort == WALL && type == BM)
+                TileType = 38;
+            else if (sort == WALL && (type == M || type == TM))
+                TileType = 27;
+            else if (sort == WALL && (type == L || type == TL))
+                TileType = 19;
+            else if (sort == WALL && (type == R || type == TR))
+                TileType = 29;
+            else if (sort == FOREST)
+                TileType = 31;
         }
 
-        public Rectangle getTile()
+        public bool IsObstacle()
         {
-            int y = ((tile-1) / (_TileMap.Width / 50)) * 50;
-            int x = ((tile-1) % (_TileMap.Width / 50)) * 50;
-            return new Rectangle(x, y, x + 50, y + 50);
+            return this.Obstacle;
+        }
+
+        public Rectangle GetTile()
+        {
+            int y = ((TileType - 1) / (TileMap.Width / Properties.TileHeight)) * Properties.TileHeight;
+            int x = ((TileType - 1) % (TileMap.Width / Properties.TileWidth)) * Properties.TileWidth;
+            return new Rectangle(x, y, x + Properties.TileWidth, y + Properties.TileHeight);
         }
     }
 }
