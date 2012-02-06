@@ -15,7 +15,7 @@ namespace DangerousGame
         const string WALL = "255255255";
         const string FOREST = "7516137";
         
-        public string sort;
+        public string Sort;
 
         public const int TL = 1;
         public const int TM = 2;
@@ -36,54 +36,54 @@ namespace DangerousGame
 
         public Tile(string color, int type, Texture2D tileMap, bool obstacle)
         {
-            this.sort = color;
+            this.Sort = color;
             this.Type = type;
             this.TileMap = tileMap;
             this.Obstacle = obstacle;
 
-            if (sort == GRASS)
+            if (Sort == GRASS)
                 TileType = 21;
-            else if (sort == PATH && type == TL)
+            else if (Sort == PATH && type == TL)
                 TileType = 3;
-            else if (sort == PATH && type == TM)
+            else if (Sort == PATH && type == TM)
                 TileType = 4;
-            else if (sort == PATH && type == TR)
+            else if (Sort == PATH && type == TR)
                 TileType = 5;
-            else if (sort == PATH && type == L)
+            else if (Sort == PATH && type == L)
                 TileType = 13;
-            else if (sort == PATH && type == M)
+            else if (Sort == PATH && type == M)
                 TileType = 14;
-            else if (sort == PATH && type == R)
+            else if (Sort == PATH && type == R)
                 TileType = 15;
-            else if (sort == PATH && type == BL)
+            else if (Sort == PATH && type == BL)
                 TileType = 23;
-            else if (sort == PATH && type == BM)
+            else if (Sort == PATH && type == BM)
                 TileType = 24;
-            else if (sort == PATH && type == BR)
+            else if (Sort == PATH && type == BR)
                 TileType = 25;
-            else if (sort == ROOF && type == BM)
+            else if (Sort == ROOF && type == BM)
                 TileType = 28;
-            else if (sort == ROOF && type == BL)
+            else if (Sort == ROOF && type == BL)
                 TileType = 26;
-            else if (sort == ROOF && type == BR)
+            else if (Sort == ROOF && type == BR)
                 TileType = 30;
-            else if (sort == ROOF && (type == TL || type == TM || type == TR))
+            else if (Sort == ROOF && (type == TL || type == TM || type == TR))
                 TileType = 8;
-            else if (sort == ROOF)
+            else if (Sort == ROOF)
                 TileType = 18;
-            else if (sort == WALL && type == BL)
+            else if (Sort == WALL && type == BL)
                 TileType = 36;
-            else if (sort == WALL && type == BR)
+            else if (Sort == WALL && type == BR)
                 TileType = 40;
-            else if (sort == WALL && type == BM)
+            else if (Sort == WALL && type == BM)
                 TileType = 38;
-            else if (sort == WALL && (type == M || type == TM))
+            else if (Sort == WALL && (type == M || type == TM))
                 TileType = 27;
-            else if (sort == WALL && (type == L || type == TL))
+            else if (Sort == WALL && (type == L || type == TL))
                 TileType = 19;
-            else if (sort == WALL && (type == R || type == TR))
+            else if (Sort == WALL && (type == R || type == TR))
                 TileType = 29;
-            else if (sort == FOREST)
+            else if (Sort == FOREST)
                 TileType = 31;
         }
 
