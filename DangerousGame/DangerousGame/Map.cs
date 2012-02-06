@@ -76,6 +76,8 @@ namespace DangerousGame
                     // then this tile is an obstacle
                     if (obstacleColorString == "000")
                         tileProperty = Tile.TileProperties.Obstacle;
+                    else if (obstacleColorString == "2550255")
+                        tileProperty = Tile.TileProperties.Aggressive;
                     else
                         tileProperty = Tile.TileProperties.Normal;
 
@@ -108,7 +110,7 @@ namespace DangerousGame
                     else
                         type = Tile.M;
 
-                    Tiles[x].Add(new Tile(colorString, type, TileMap, isObstacle, objectsColorString));
+                    Tiles[x].Add(new Tile(colorString, type, TileMap, tileProperty, objectsColorString));
                 }
             }
         }
