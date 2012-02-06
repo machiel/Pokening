@@ -21,6 +21,8 @@ namespace DangerousGame
         private Texture2D TileMap;
         private Texture2D MapImage;
 
+        private Texture2D ObjectsImage;
+
         const int GrassTile = 0;
         const int DirtTile = 1;
 
@@ -41,10 +43,16 @@ namespace DangerousGame
         {
             MapImage = contentManager.Load<Texture2D>(theAsset);
             Texture2D obstacleMap = contentManager.Load<Texture2D>(theAsset + "-obstacle");
+            Texture2D objectsMap = contentManager.Load<Texture2D>(theAsset + "-objectsMap");
+            ObjectsImage = contentManager.Load<Texture2D>(theAsset + "-objects");
+
             Color[] textureData = new Color[MapImage.Width * MapImage.Height];
             Color[] obstacleTextureData = new Color[MapImage.Width * MapImage.Height];
+            Color[] objectsTextureData = new Color[MapImage.Width * MapImage.Height];
+
             MapImage.GetData(textureData);
             obstacleMap.GetData(obstacleTextureData);
+            objectsMap.GetData(objectsTextureData);
 
             // Check every point within the intersection bounds
             for (int x = 0; x < MapImage.Width; x++)
@@ -57,16 +65,17 @@ namespace DangerousGame
 
                     // Get the color of both pixels at this point
                     Color color = textureData[(x) + (y * MapImage.Width)];
-                    Color obstacleColor = obstacleTextureData[(x) + (y * MapImage.Width)]; 
+                    Color obstacleColor = obstacleTextureData[(x) + (y * MapImage.Width)];
+                    Color objectsColor = objectsTextureData[(x) + (y * MapImage.Width)];
+
                     string colorString = color.R.ToString() + color.G.ToString() + color.B.ToString();
                     string obstacleColorString = obstacleColor.R.ToString() + obstacleColor.G.ToString() + obstacleColor.B.ToString();
+                    string objectsColorString = objectsColor.R.ToString() + objectsColor.G.ToString() + objectsColor.B.ToString();
                     
                     // If the color of this tile in the obstacle map is black
                     // then this tile is an obstacle
                     if (obstacleColorString == "000")
-                    {
                         isObstacle = true;
-                    }
 
                     Color tileTL = GetTileColor(textureData, MapImage, (x - 1), (y - 1));
                     Color tileTM = GetTileColor(textureData, MapImage, x, (y - 1));
@@ -97,7 +106,7 @@ namespace DangerousGame
                     else
                         Type = Tile.M;
 
-                    Tiles[x].Add(new Tile(colorString, Type, TileMap, isObstacle));
+                    Tiles[x].Add(new Tile(colorString, Type, TileMap, isObstacle, objectsColorString));
                 }
             }
         }
@@ -120,17 +129,30 @@ namespace DangerousGame
             // For each tile drawing the texture corresponding with that tile
             for (int x = 0; x < Tiles.Count; x++)
             {
+                // Normal X position + the offset of the background
                 int newX = x * Properties.TileWidth;
+
                 for (int Y = 0; Y < Tiles[x].Count; Y++)
                 {
                     Tile tile = Tiles[x][Y];
+
+                    // Getting the position of the tile on the tile images sprite
                     Rectangle tileBoundaries = tile.GetTile();
 
+                    // Getting the position of the tile on the objects images sprite
+                    Rectangle objectBoundaries = tile.GetObject();
+
+                    // Normal Y position + the offset of the background
                     int newY = Y * Properties.TileHeight;
 
+                    // The position where the objects and underground should be drawn
                     Vector2 drawLocation = new Vector2(newX, newY) + inversedPosition;
 
+                    // Drawing the tile/underground image on this location
                     spriteBatch.Draw(TileMap, drawLocation, tileBoundaries, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+
+                    // Drawing the object image on this location
+                    spriteBatch.Draw(ObjectsImage, drawLocation, objectBoundaries, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
                 }
             }
         }

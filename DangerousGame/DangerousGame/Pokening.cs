@@ -22,6 +22,7 @@ namespace DangerousGame
         SpriteBatch SpriteBatch;
         MainCharacter Player;
         Map Map;
+        Map Objects;
         String DisplayText = "";
         Boolean GamePaused = false;
         SpriteFont SpriteFont;
@@ -47,6 +48,7 @@ namespace DangerousGame
         protected override void Initialize()
         {
             Map = new Map();
+            Objects = new Map();
 
             Player = new MainCharacter(Map);
             //Player.Position = MainCharacter.GetCenter();
@@ -72,6 +74,8 @@ namespace DangerousGame
             Player.LoadContent(this.Content, "mainChar");
             Map.LoadTiles(this.Content, "tiles");
             Map.CreateMap(this.Content, "map-example");
+            //Objects.LoadTiles(this.Content, "objects");
+            //Objects.CreateMap(this.Content, "objectsMap");
             SpriteFont = Content.Load<SpriteFont>("Calibri");
         }
 

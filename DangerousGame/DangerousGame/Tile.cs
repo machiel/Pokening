@@ -14,7 +14,6 @@ namespace DangerousGame
         const string ROOF = "2327777";
         const string WALL = "255255255";
         const string FOREST = "7516137";
-        
         public string Sort;
 
         public const int TL = 1;
@@ -29,17 +28,23 @@ namespace DangerousGame
         public int Type;
         private bool Obstacle;
 
+        public const string DOOR = "1901430";
+        public const string WINDOW = "174189124";
+        public string objectColor;
+        public int ObjectType;
+
         // From top left to right bottom the number of which tile it is
         public int TileType;
 
         private Texture2D TileMap;
 
-        public Tile(string color, int type, Texture2D tileMap, bool obstacle)
+        public Tile(string color, int type, Texture2D tileMap, bool obstacle, string objectColor)
         {
             this.Sort = color;
             this.Type = type;
             this.TileMap = tileMap;
             this.Obstacle = obstacle;
+            this.objectColor = objectColor;
 
             if (Sort == GRASS)
                 TileType = 21;
@@ -85,6 +90,11 @@ namespace DangerousGame
                 TileType = 29;
             else if (Sort == FOREST)
                 TileType = 31;
+
+            if (objectColor == WINDOW)
+                ObjectType = 1;
+            else if (objectColor == DOOR)
+                ObjectType = 2;
         }
 
         public bool IsObstacle()
@@ -96,6 +106,13 @@ namespace DangerousGame
         {
             int y = ((TileType - 1) / (TileMap.Width / Properties.TileHeight)) * Properties.TileHeight;
             int x = ((TileType - 1) % (TileMap.Width / Properties.TileWidth)) * Properties.TileWidth;
+            return new Rectangle(x, y, x + Properties.TileWidth, y + Properties.TileHeight);
+        }
+
+        public Rectangle GetObject()
+        {
+            int y = ((ObjectType - 1) / (TileMap.Width / Properties.TileHeight)) * Properties.TileHeight;
+            int x = ((ObjectType - 1) % (TileMap.Width / Properties.TileWidth)) * Properties.TileWidth;
             return new Rectangle(x, y, x + Properties.TileWidth, y + Properties.TileHeight);
         }
     }
