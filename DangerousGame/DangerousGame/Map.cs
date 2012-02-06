@@ -77,27 +77,27 @@ namespace DangerousGame
                     Color tileBM = GetTileColor(textureData, MapImage, x, (y + 1));
                     Color tileBR = GetTileColor(textureData, MapImage, (x + 1), (y + 1));
 
-                    int Type;
+                    int type;
                     if (color != tileL && color != tileTM)
-                        Type = Tile.TL;
+                        type = Tile.TL;
                     else if (color == tileL && color == tileR && color != tileTM)
-                        Type = Tile.TM;
+                        type = Tile.TM;
                     else if (color != tileR && color != tileTM)
-                        Type = Tile.TR;
+                        type = Tile.TR;
                     else if (color != tileL && color == tileTM && color == tileBM)
-                        Type = Tile.L;
+                        type = Tile.L;
                     else if (color != tileR && color == tileTM && color == tileBM)
-                        Type = Tile.R;
+                        type = Tile.R;
                     else if (color != tileL && color != tileBM)
-                        Type = Tile.BL;
+                        type = Tile.BL;
                     else if (color == tileL && color == tileR && color != tileBM)
-                        Type = Tile.BM;
+                        type = Tile.BM;
                     else if (color != tileR && color != tileBM)
-                        Type = Tile.BR;
+                        type = Tile.BR;
                     else
-                        Type = Tile.M;
+                        type = Tile.M;
 
-                    Tiles[x].Add(new Tile(colorString, Type, TileMap, isObstacle));
+                    Tiles[x].Add(new Tile(colorString, type, TileMap, isObstacle));
                 }
             }
         }
