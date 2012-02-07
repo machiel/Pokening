@@ -116,6 +116,7 @@
     <Compile Include="Pokening.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="WorldScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

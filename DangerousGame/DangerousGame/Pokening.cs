@@ -20,12 +20,11 @@ namespace DangerousGame
     {
         GraphicsDeviceManager Graphics;
         SpriteBatch SpriteBatch;
-        MainCharacter Player;
-        Map Map;
-        Map Objects;
+
         String DisplayText = "";
-        Boolean GamePaused = false;
         SpriteFont SpriteFont;
+
+        WorldScreen WorldScreen;
 
         public Pokening()
         {
@@ -33,10 +32,11 @@ namespace DangerousGame
             Content.RootDirectory = "Content";
             this.Window.Title = "Pokening";
 
+            WorldScreen = new WorldScreen();
+
             // Window size
             this.Graphics.PreferredBackBufferWidth = Properties.WindowWidth;
             this.Graphics.PreferredBackBufferHeight = Properties.WindowHeight;
-            //this.graphics.IsFullScreen = true;
         }
 
         /// <summary>
@@ -47,19 +47,7 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
-            Map = new Map();
-            Objects = new Map();
-
-            Player = new MainCharacter(Map);
-            //Player.Position = MainCharacter.GetCenter();
-            Player.setPosition(new Vector2(800, 600));
-            //Console.Out.WriteLine("Player pos: " + Player.Position.X + ", Y: " + Player.Position.Y);
-            Player.SetAnimation(Properties.MainCharacterWidth, Properties.MainCharacterHeight);
-            Player.AddAnimation("walkDown", new int[] { 1, 2 }, 4);
-            Player.AddAnimation("walkUp", new int[] { 4, 5 }, 4);
-            Player.AddAnimation("walkLeft", new int[] { 7, 8 }, 5);
-            Player.AddAnimation("walkRight", new int[] { 10, 11 }, 5);
-
+            WorldScreen.Initialize();
             base.Initialize();
         }
 
@@ -71,9 +59,9 @@ namespace DangerousGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            Player.LoadContent(this.Content, "mainChar");
-            Map.LoadTiles(this.Content, "tiles");
-            Map.CreateMap(this.Content, "map-example");
+
+            WorldScreen.LoadContent(this.Content);
+
             //Objects.LoadTiles(this.Content, "objects");
             //Objects.CreateMap(this.Content, "objectsMap");
             SpriteFont = Content.Load<SpriteFont>("Calibri");
@@ -95,28 +83,16 @@ namespace DangerousGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            KeyboardState KeyboardState = Keyboard.GetState();
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                this.Exit();
 
-            // Pausing game when hitting the escape key
-            if (KeyboardState.IsKeyDown(Keys.Escape))
-            {
-                if (GamePaused) GamePaused = false;
-                else GamePaused = true;
-            }
-
-            if(!GamePaused) { 
-                // Allows the game to exit
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                    this.Exit();
-
-                // Updating Pikachu
-                Player.Update(gameTime);
-            }
+            WorldScreen.Update(gameTime);
             
             // Updating parent class
             base.Update(gameTime);
         }
 
+        /*
         private bool IntersectPixels(Sprite object1, Sprite object2)
         {
             // Getting the position and dimensions of both sprites
@@ -151,7 +127,7 @@ namespace DangerousGame
                 }
             }
             return false;
-        }
+        }*/
 
         public void SetGamePaused()
         {
@@ -168,9 +144,8 @@ namespace DangerousGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             SpriteBatch.Begin();
-            Map.Draw(SpriteBatch);
-            Player.Draw(SpriteBatch);
-            
+            WorldScreen.Draw(SpriteBatch);
+                        
             SpriteBatch.DrawString(SpriteFont, DisplayText, new Vector2(600, 10), Color.Black);
             SpriteBatch.End();
 
