@@ -25,21 +25,20 @@ namespace DangerousGame
             Texture2D charmander = contentManager.Load<Texture2D>("charmander");
 
             Monster mSquirtle = new Monster(squirtle, "Squirtle");
-            Monster mBulbasaur = new Monster(squirtle, "Bulbasaur");
-            Monster mCharmander = new Monster(squirtle, "Charmander");
+            Monster mBulbasaur = new Monster(bulbasaur, "Bulbasaur");
+            Monster mCharmander = new Monster(charmander, "Charmander");
 
-            Monsters.Add(mSquirtle);
             Monsters.Add(mBulbasaur);
+            Monsters.Add(mSquirtle);
             Monsters.Add(mCharmander);
 
 
         }
 
-        public void Reinitialize()
+        public void Reinitialize(int seed)
         {
-            Random rand = new Random();
+            Random rand = new Random(seed);
             int i = rand.Next(0, Monsters.Count);
-            Console.Out.WriteLine(i);
             Monster = Monsters[i];
             Monster.Reset(rand.Next(1, 6));
         }

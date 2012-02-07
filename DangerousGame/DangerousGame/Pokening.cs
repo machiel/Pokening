@@ -111,7 +111,7 @@ namespace DangerousGame
 
             if (PreviousScreen != CurrentScreen && CurrentScreen == Screens.FightingScreen)
             {
-                FightingScreen.Reinitialize();
+                FightingScreen.Reinitialize(gameTime.TotalGameTime.Milliseconds);
             }
             
             // Updating parent class
