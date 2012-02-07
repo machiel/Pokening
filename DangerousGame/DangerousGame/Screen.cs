@@ -14,7 +14,7 @@ namespace DangerousGame
 {
     interface Screen
     {
-        void Initialize();
+        void Initialize(ContentManager contentManager);
         void LoadContent(ContentManager contentManager);
         Pokening.Screens Update(GameTime gameTime);
         void Draw(GraphicsDeviceManager graphics, SpriteBatch spriteBatch);

@@ -19,7 +19,7 @@ namespace DangerousGame
         Map Map;
         Map Objects;
 
-        public void Initialize()
+        public void Initialize(ContentManager contentManager)
         {
             Map = new Map();
             Objects = new Map();

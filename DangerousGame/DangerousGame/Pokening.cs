@@ -28,6 +28,7 @@ namespace DangerousGame
         };
 
         private Screens CurrentScreen;
+        private Screens PreviousScreen;
 
         WorldScreen WorldScreen;
         FightingScreen FightingScreen;
@@ -56,8 +57,8 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
-            WorldScreen.Initialize();
-            FightingScreen.Initialize();
+            WorldScreen.Initialize(this.Content);
+            FightingScreen.Initialize(this.Content);
             base.Initialize();
         }
 
@@ -97,7 +98,7 @@ namespace DangerousGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            Screens oldScreen = CurrentScreen;
+            PreviousScreen = CurrentScreen;
 
             if (CurrentScreen == Screens.WorldScreen)
             {
@@ -106,6 +107,11 @@ namespace DangerousGame
             else if (CurrentScreen == Screens.FightingScreen)
             {
                 CurrentScreen = FightingScreen.Update(gameTime);
+            }
+
+            if (PreviousScreen != CurrentScreen && CurrentScreen == Screens.FightingScreen)
+            {
+                FightingScreen.Reinitialize();
             }
             
             // Updating parent class
