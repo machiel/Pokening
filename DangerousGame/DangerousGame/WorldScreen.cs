@@ -26,7 +26,7 @@ namespace DangerousGame
 
             Player = new MainCharacter(Map);
             //Player.Position = MainCharacter.GetCenter();
-            Player.setPosition(new Vector2(800, 600));
+            Player.setPosition(new Vector2(Properties.WindowWidth, Properties.WindowHeight));
             //Console.Out.WriteLine("Player pos: " + Player.Position.X + ", Y: " + Player.Position.Y);
             Player.SetAnimation(Properties.MainCharacterWidth, Properties.MainCharacterHeight);
             Player.AddAnimation("walkDown", new int[] { 1, 2 }, 4);

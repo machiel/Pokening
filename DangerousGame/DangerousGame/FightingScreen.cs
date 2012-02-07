@@ -14,20 +14,30 @@ namespace DangerousGame
 {
     class FightingScreen : Screen
     {
+        SpriteFont SpriteFont;
+
         public void Initialize()
         {
-
+            
         }
 
         public void LoadContent(ContentManager contentManager)
         {
-
+            SpriteFont = contentManager.Load<SpriteFont>("Calibri");
         }
 
         public Pokening.Screens Update(GameTime gameTime)
         {
+            KeyboardState keyboardState = Keyboard.GetState();
 
-            return Pokening.Screens.FightingScreen;
+            if (keyboardState.IsKeyDown(Keys.Escape))
+            {
+                return Pokening.Screens.WorldScreen;
+            }
+            else
+            {
+                return Pokening.Screens.FightingScreen;
+            }
         }
 
         public void Draw(GraphicsDeviceManager graphics, SpriteBatch spriteBatch)
@@ -39,6 +49,7 @@ namespace DangerousGame
             text.SetData(data);
 
             spriteBatch.Draw(text, Vector2.Zero, Color.White);
+            spriteBatch.DrawString(SpriteFont, "You're in a fight, bro! Press ESC to flee!", new Vector2(10, 10), Color.Black);
         }
     }
 }

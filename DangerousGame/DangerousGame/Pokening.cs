@@ -21,9 +21,6 @@ namespace DangerousGame
         GraphicsDeviceManager Graphics;
         SpriteBatch SpriteBatch;
 
-        String DisplayText = "";
-        SpriteFont SpriteFont;
-
         public enum Screens
         {
             WorldScreen,
@@ -44,6 +41,7 @@ namespace DangerousGame
             CurrentScreen = Screens.WorldScreen;
 
             WorldScreen = new WorldScreen();
+            FightingScreen = new FightingScreen();
 
             // Window size
             this.Graphics.PreferredBackBufferWidth = Properties.WindowWidth;
@@ -59,6 +57,7 @@ namespace DangerousGame
         protected override void Initialize()
         {
             WorldScreen.Initialize();
+            FightingScreen.Initialize();
             base.Initialize();
         }
 
@@ -72,10 +71,11 @@ namespace DangerousGame
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             WorldScreen.LoadContent(this.Content);
+            FightingScreen.LoadContent(this.Content);
 
             //Objects.LoadTiles(this.Content, "objects");
             //Objects.CreateMap(this.Content, "objectsMap");
-            SpriteFont = Content.Load<SpriteFont>("Calibri");
+            
         }
 
         /// <summary>
@@ -105,12 +105,7 @@ namespace DangerousGame
             }
             else if (CurrentScreen == Screens.FightingScreen)
             {
-                
-            }
-
-            if (oldScreen != CurrentScreen && CurrentScreen == Screens.FightingScreen)
-            {
-                FightingScreen = new FightingScreen();
+                CurrentScreen = FightingScreen.Update(gameTime);
             }
             
             // Updating parent class
@@ -174,8 +169,6 @@ namespace DangerousGame
                 FightingScreen.Draw(Graphics, SpriteBatch);
             }
             
-                        
-            SpriteBatch.DrawString(SpriteFont, DisplayText, new Vector2(600, 10), Color.Black);
             SpriteBatch.End();
 
             base.Draw(gameTime);
