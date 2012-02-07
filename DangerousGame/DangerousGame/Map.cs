@@ -152,8 +152,12 @@ namespace DangerousGame
                     // The position where the objects and underground should be drawn
                     Vector2 drawLocation = new Vector2(newX, newY) + inversedPosition;
 
-                    // Drawing the tile/underground image on this location
-                    spriteBatch.Draw(TileMap, drawLocation, tileBoundaries, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    // Drawing the underground tile for this map
+                    spriteBatch.Draw(TileMap, drawLocation, new Rectangle(0, 100, 50, 150), Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+
+                    // Drawing the underground tile image on this location
+                    if (tile.Sort != Properties.TileColorCodes.Grass)
+                        spriteBatch.Draw(TileMap, drawLocation, tileBoundaries, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
 
                     // Drawing the object image on this location
                     spriteBatch.Draw(ObjectsImage, drawLocation, objectBoundaries, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0);
