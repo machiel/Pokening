@@ -88,8 +88,24 @@ namespace DangerousGame
                 TileType = 19;
             else if (Sort == Properties.TileColorCodes.Wall && (type == R || type == TR))
                 TileType = 29;
-            else if (Sort == Properties.TileColorCodes.Forest)
-                TileType = 31;
+            else if (Sort == Properties.TileColorCodes.Forest && type == M)
+                TileType = 52;
+            else if (Sort == Properties.TileColorCodes.Forest && type == R)
+                TileType = 53;
+            else if (Sort == Properties.TileColorCodes.Forest && type == L)
+                TileType = 51;
+            else if (Sort == Properties.TileColorCodes.Forest && type == TM)
+                TileType = 42;
+            else if (Sort == Properties.TileColorCodes.Forest && type == TR)
+                TileType = 43;
+            else if (Sort == Properties.TileColorCodes.Forest && type == TL)
+                TileType = 41;
+            else if (Sort == Properties.TileColorCodes.Forest && type == BM)
+                TileType = 62;
+            else if (Sort == Properties.TileColorCodes.Forest && type == BR)
+                TileType = 63;
+            else if (Sort == Properties.TileColorCodes.Forest && type == BL)
+                TileType = 61;
 
             if (objectColor == Properties.TileColorCodes.Window)
                 ObjectType = 1;

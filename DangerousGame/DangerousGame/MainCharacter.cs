@@ -87,15 +87,12 @@ namespace DangerousGame
                 pressedKeys.Remove(Keys.Down);
             }
 
+            // When there is pressed a key, get the last pressed key. And behave like only
+            // that key is pressed
             if (pressedKeys.Count > 0)
                 lastPressedKey = pressedKeys[pressedKeys.Count - 1];
             else
                 lastPressedKey = 0;
-
-            //foreach (Keys key in pressedKeys)
-            //    Console.Out.WriteLine(key);
-
-            //Console.Out.WriteLine(pressedKeys.Count);
 
             if (lastPressedKey == Keys.Left)
             {
