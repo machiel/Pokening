@@ -21,6 +21,15 @@ namespace DangerousGame
         const int MOVE_RIGHT = 1;
         const int MOVE_LEFT = -1;
 
+        public enum PlayerStatus
+        {
+            Walking,
+            Standing,
+            Attacking
+        };
+
+        private PlayerStatus Status;
+
         private Map Map;
 
         private List<Keys> pressedKeys = new List<Keys>();
@@ -29,6 +38,7 @@ namespace DangerousGame
         public MainCharacter (Map map)
         {
             this.Map = map;
+            Status = PlayerStatus.Standing;
         }
 
         public void Update(GameTime gameTime)
@@ -129,15 +139,26 @@ namespace DangerousGame
             {
                 Velocity = Vector2.Zero;
                 Direction = Vector2.Zero;
+
+                Status = PlayerStatus.Standing;
             }
             else
             {
                 if (Map.AttackStarted(newPosition))
                 {
-                    Console.Out.WriteLine("Pikachu, I choose you!");
+                    Status = PlayerStatus.Attacking;
                 }
-                Map.SetCenterPosition(newPosition);
+                else
+                {
+                    Map.SetCenterPosition(newPosition);
+                    Status = PlayerStatus.Walking;
+                }
             }
+        }
+
+        public PlayerStatus GetStatus()
+        {
+            return Status;
         }
 
         public void setPosition(Vector2 value)

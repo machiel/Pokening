@@ -24,13 +24,24 @@ namespace DangerousGame
         String DisplayText = "";
         SpriteFont SpriteFont;
 
+        public enum Screens
+        {
+            WorldScreen,
+            FightingScreen
+        };
+
+        private Screens CurrentScreen;
+
         WorldScreen WorldScreen;
+        FightingScreen FightingScreen;
 
         public Pokening()
         {
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.Window.Title = "Pokening";
+
+            CurrentScreen = Screens.WorldScreen;
 
             WorldScreen = new WorldScreen();
 
@@ -86,7 +97,21 @@ namespace DangerousGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            WorldScreen.Update(gameTime);
+            Screens oldScreen = CurrentScreen;
+
+            if (CurrentScreen == Screens.WorldScreen)
+            {
+                CurrentScreen = WorldScreen.Update(gameTime);
+            }
+            else if (CurrentScreen == Screens.FightingScreen)
+            {
+                
+            }
+
+            if (oldScreen != CurrentScreen && CurrentScreen == Screens.FightingScreen)
+            {
+                FightingScreen = new FightingScreen();
+            }
             
             // Updating parent class
             base.Update(gameTime);
@@ -139,7 +164,16 @@ namespace DangerousGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             SpriteBatch.Begin();
-            WorldScreen.Draw(SpriteBatch);
+
+            if (CurrentScreen == Screens.WorldScreen)
+            {
+                WorldScreen.Draw(Graphics, SpriteBatch);
+            }
+            else if (CurrentScreen == Screens.FightingScreen)
+            {
+                FightingScreen.Draw(Graphics, SpriteBatch);
+            }
+            
                         
             SpriteBatch.DrawString(SpriteFont, DisplayText, new Vector2(600, 10), Color.Black);
             SpriteBatch.End();

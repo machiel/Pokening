@@ -108,12 +108,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="FightingScreen.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MainCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Pokening.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="WorldScreen.cs" />
