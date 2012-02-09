@@ -36,6 +36,10 @@ namespace DangerousGame
         FightingScreen FightingScreen;
         SpriteFont SpriteFont;
 
+        List<Monster> Monsters = new List<Monster>();
+
+        Player Player;
+
         public Pokening()
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -60,6 +64,25 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
+
+            Texture2D squirtle = Content.Load<Texture2D>("squirtle");
+            Texture2D bulbasaur = Content.Load<Texture2D>("bulbasaur");
+            Texture2D charmander = Content.Load<Texture2D>("charmander");
+            Texture2D pikachu = Content.Load<Texture2D>("pikachu");
+
+
+            Monster mSquirtle = new Monster(squirtle, "Squirtle");
+            Monster mBulbasaur = new Monster(bulbasaur, "Bulbasaur");
+            Monster mCharmander = new Monster(charmander, "Charmander");
+            Monster mPikachu = new Monster(pikachu, "Pikachu");
+
+            Monsters.Add(mSquirtle);
+            Monsters.Add(mBulbasaur);
+            Monsters.Add(mCharmander);
+            Monsters.Add(mPikachu);
+
+            Player = new Player(Monsters);
+
             WorldScreen.Initialize(this.Content);
             FightingScreen.Initialize(this.Content);
             base.Initialize();
@@ -115,7 +138,10 @@ namespace DangerousGame
 
             if (PreviousScreen != CurrentScreen && CurrentScreen == Screens.FightingScreen)
             {
-                FightingScreen.Reinitialize(gameTime.TotalGameTime.Milliseconds);
+                Random rand = new Random(gameTime.TotalGameTime.Milliseconds);
+                int i = rand.Next(0, Monsters.Count);
+                Battle battle = new Battle(Player, Monsters[i]);
+                FightingScreen.Reinitialize(battle);
             }
             
             // Updating parent class

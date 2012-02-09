@@ -15,9 +15,9 @@ namespace DangerousGame
     class WorldScreen : Screen
     {
 
-        MainCharacter Player;
         Map Map;
         Map Objects;
+        MainCharacter Player;
 
         public void Initialize(ContentManager contentManager)
         {

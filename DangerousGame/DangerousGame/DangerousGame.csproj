@@ -121,10 +121,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Battle.cs" />
     <Compile Include="FightingScreen.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="ItemScreen.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="MonsterScreen.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MainCharacter.cs" />
