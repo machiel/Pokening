@@ -11,7 +11,7 @@ namespace DangerousGame
     {
         private string Name;
         private int Level;
-        private float HealthPercentage = 100.0f;
+        private int Health = 100;
 
         private Texture2D Texture;
 
@@ -33,8 +33,18 @@ namespace DangerousGame
 
         public void Reset(int level)
         {
-            HealthPercentage = 100.0f;
+            Health = 100;
             Level = level;
+        }
+
+        public void DecreaseHealth(int decrement)
+        {
+            Health -= decrement;
+        }
+
+        public int GetHealth()
+        {
+            return Health;
         }
 
         public Texture2D GetTexture()

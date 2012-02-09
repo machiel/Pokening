@@ -24,7 +24,9 @@ namespace DangerousGame
         public enum Screens
         {
             WorldScreen,
-            FightingScreen
+            FightingScreen,
+            ItemScreen,
+            MonsterScreen
         };
 
         private Screens CurrentScreen;
@@ -32,6 +34,7 @@ namespace DangerousGame
 
         WorldScreen WorldScreen;
         FightingScreen FightingScreen;
+        SpriteFont SpriteFont;
 
         public Pokening()
         {
@@ -73,6 +76,7 @@ namespace DangerousGame
 
             WorldScreen.LoadContent(this.Content);
             FightingScreen.LoadContent(this.Content);
+            SpriteFont = this.Content.Load<SpriteFont>("Calibri");
 
             //Objects.LoadTiles(this.Content, "objects");
             //Objects.CreateMap(this.Content, "objectsMap");
@@ -111,7 +115,7 @@ namespace DangerousGame
 
             if (PreviousScreen != CurrentScreen && CurrentScreen == Screens.FightingScreen)
             {
-                FightingScreen.Reinitialize();
+                FightingScreen.Reinitialize(gameTime.TotalGameTime.Milliseconds);
             }
             
             // Updating parent class
@@ -174,6 +178,8 @@ namespace DangerousGame
             {
                 FightingScreen.Draw(Graphics, SpriteBatch);
             }
+
+            SpriteBatch.DrawString(SpriteFont, "v0.2.3", new Vector2(750, 0), Color.Black);
             
             SpriteBatch.End();
 
