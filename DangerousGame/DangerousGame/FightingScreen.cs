@@ -16,8 +16,11 @@ namespace DangerousGame
     {
         SpriteFont SpriteFont;
         Battle Battle;
+        private int LastAction = 0;
 
         bool IsAttacking = false;
+        bool FightOver = false;
+        string DisplayText = "";
 
         public void Initialize(ContentManager contentManager)
         {
@@ -52,12 +55,26 @@ namespace DangerousGame
             }
             else
             {
-
-                if (pressedKeys.Contains(Keys.F) && !IsAttacking)
+                if (Battle.States.EnemyTurn == Battle.GetState() && gameTime.TotalGameTime.Seconds - LastAction > 1)
                 {
-                    Battle.GetMonster().DecreaseHealth(5);
+                    Battle.Attack();
+                } 
+                else if (pressedKeys.Contains(Keys.F) && !IsAttacking && Battle.GetState() == Battle.States.PlayerTurn)
+                {
+                    Battle.Attack();
                     IsAttacking = true;
+                    LastAction = gameTime.TotalGameTime.Seconds;
                 }
+
+                if (Battle.GetOutcome() == Battle.Outcomes.PlayerWon)
+                {
+                    DisplayText = " YOU WON! < PRESS ESC TO EXIT > ";
+                }
+                else if (Battle.GetOutcome() == Battle.Outcomes.EnemyWon)
+                {
+                    DisplayText = " YOU LOST! < PRESS ESC TO EXIT > ";
+                }
+
 
                 return Pokening.Screens.FightingScreen;
             }
@@ -95,6 +112,31 @@ namespace DangerousGame
 
             healthTexture.SetData(healthData);
 
+            Texture2D myHealthTexture = new Texture2D(graphics.GraphicsDevice, 100, 20);
+
+            int myHealth = Battle.GetActivePlayerMonster().GetHealth();
+            Color[] myHealthData = new Color[100 * 20];
+
+            for (int x = 0; x < 100; x++)
+            {
+
+                Color c = Color.Green;
+
+                if (x > (int)(((float)myHealth / 100) * 100))
+                {
+                    c = Color.Red;
+                }
+
+                for (int y = 0; y < 20; y++)
+                {
+                    myHealthData[100 * y + x] = c;
+                }
+
+
+            }
+
+            myHealthTexture.SetData(myHealthData);
+
             spriteBatch.Draw(text, Vector2.Zero, Color.White);
             //spriteBatch.DrawString(SpriteFont, "A wild " + Monster.GetName() + " appeared!", new Vector2(10, 30), Color.Black);
             spriteBatch.DrawString(SpriteFont, Battle.GetMonster().GetName().ToUpper(), new Vector2(40, 30), Color.Black);
@@ -105,7 +147,9 @@ namespace DangerousGame
             spriteBatch.DrawString(SpriteFont, Battle.GetActivePlayerMonster().GetName().ToUpper(), new Vector2(600, 400), Color.Black);
             spriteBatch.DrawString(SpriteFont, ":L" + Battle.GetActivePlayerMonster().GetLevel(), new Vector2(610, 420), Color.Black);
             spriteBatch.DrawString(SpriteFont, "HP:", new Vector2(610, 440), Color.Black);
-            spriteBatch.Draw(healthTexture, new Vector2(640, 440), Color.White);
+            spriteBatch.Draw(myHealthTexture, new Vector2(640, 440), Color.White);
+
+            spriteBatch.DrawString(SpriteFont, DisplayText, new Vector2(350, 300), Color.Red);
 
             Texture2D monsterTexture = Battle.GetMonster().GetTexture();
             spriteBatch.Draw(monsterTexture, new Vector2(500, 20), Color.White);
