@@ -106,6 +106,12 @@ namespace DangerousGame
                 TileType = 63;
             else if (Sort == Properties.TileColorCodes.Forest && type == BL)
                 TileType = 61;
+            else if (Sort == Properties.TileColorCodes.TallGrass && (type == L || type == TL || type == BL))
+                TileType = 33;
+            else if (Sort == Properties.TileColorCodes.TallGrass && (type == R || type == TR || type == BR))
+                TileType = 35;
+            else if (Sort == Properties.TileColorCodes.TallGrass)
+                TileType = 34;
 
             if (objectColor == Properties.TileColorCodes.Window)
                 ObjectType = 1;

@@ -27,6 +27,7 @@ namespace DangerousGame
             public const string Roof = "2327777";
             public const string Wall = "255255255";
             public const string Forest = "7516137";
+            public const string TallGrass = "8212619";
 
             public const string Door = "1901430";
             public const string Window = "174189124";
