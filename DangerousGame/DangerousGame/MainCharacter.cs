@@ -32,8 +32,8 @@ namespace DangerousGame
 
         private Map Map;
 
-        private List<Keys> pressedKeys = new List<Keys>();
-        private Keys lastPressedKey;
+        private List<Keys> PressedKeys = new List<Keys>();
+        private Keys LastPressedKey;
 
         public MainCharacter (Map map)
         {
@@ -56,73 +56,73 @@ namespace DangerousGame
             // Left Arrow Key
             if (currentKeyboardState.IsKeyDown(Keys.Left))
             {
-                if (!pressedKeys.Contains(Keys.Left))
-                    pressedKeys.Add(Keys.Left);
+                if (!PressedKeys.Contains(Keys.Left))
+                    PressedKeys.Add(Keys.Left);
             }
-            else if (pressedKeys.Contains(Keys.Left))
+            else if (PressedKeys.Contains(Keys.Left))
             {
-                pressedKeys.Remove(Keys.Left);
+                PressedKeys.Remove(Keys.Left);
             }
 
             // Right Arrow Key
             if (currentKeyboardState.IsKeyDown(Keys.Right))
             {
-                if (!pressedKeys.Contains(Keys.Right))
-                    pressedKeys.Add(Keys.Right);
+                if (!PressedKeys.Contains(Keys.Right))
+                    PressedKeys.Add(Keys.Right);
             }
-            else if (pressedKeys.Contains(Keys.Right))
+            else if (PressedKeys.Contains(Keys.Right))
             {
-                pressedKeys.Remove(Keys.Right);
+                PressedKeys.Remove(Keys.Right);
             }
 
             // Up Arrow Key
             if (currentKeyboardState.IsKeyDown(Keys.Up))
             {
-                if (!pressedKeys.Contains(Keys.Up))
-                    pressedKeys.Add(Keys.Up);
+                if (!PressedKeys.Contains(Keys.Up))
+                    PressedKeys.Add(Keys.Up);
             }
-            else if (pressedKeys.Contains(Keys.Up))
+            else if (PressedKeys.Contains(Keys.Up))
             {
-                pressedKeys.Remove(Keys.Up);
+                PressedKeys.Remove(Keys.Up);
             }
 
             // Down Arrow Key
             if (currentKeyboardState.IsKeyDown(Keys.Down))
             {
-                if (!pressedKeys.Contains(Keys.Down))
-                    pressedKeys.Add(Keys.Down);
+                if (!PressedKeys.Contains(Keys.Down))
+                    PressedKeys.Add(Keys.Down);
             }
-            else if (pressedKeys.Contains(Keys.Down))
+            else if (PressedKeys.Contains(Keys.Down))
             {
-                pressedKeys.Remove(Keys.Down);
+                PressedKeys.Remove(Keys.Down);
             }
 
             // When there is pressed a key, get the last pressed key. And behave like only
             // that key is pressed
-            if (pressedKeys.Count > 0)
-                lastPressedKey = pressedKeys[pressedKeys.Count - 1];
+            if (PressedKeys.Count > 0)
+                LastPressedKey = PressedKeys[PressedKeys.Count - 1];
             else
-                lastPressedKey = 0;
+                LastPressedKey = 0;
 
-            if (lastPressedKey == Keys.Left)
+            if (LastPressedKey == Keys.Left)
             {
                 Velocity.X = Speed;
                 Direction.X = MOVE_LEFT;
                 Play("walkLeft");
             }
-            else if (lastPressedKey == Keys.Right)
+            else if (LastPressedKey == Keys.Right)
             {
                 Velocity.X = Speed;
                 Direction.X = MOVE_RIGHT;
                 Play("walkRight");
             }
-            else if (lastPressedKey == Keys.Up)
+            else if (LastPressedKey == Keys.Up)
             {
                 Velocity.Y = Speed;
                 Direction.Y = MOVE_UP;
                 Play("walkUp");
             }
-            else if (lastPressedKey == Keys.Down)
+            else if (LastPressedKey == Keys.Down)
             {
                 Velocity.Y = Speed;
                 Direction.Y = MOVE_DOWN;

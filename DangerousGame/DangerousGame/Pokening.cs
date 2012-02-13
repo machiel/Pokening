@@ -24,7 +24,9 @@ namespace DangerousGame
         public enum Screens
         {
             WorldScreen,
-            FightingScreen
+            FightingScreen,
+            ItemScreen,
+            MonsterScreen
         };
 
         private Screens CurrentScreen;
@@ -32,6 +34,11 @@ namespace DangerousGame
 
         WorldScreen WorldScreen;
         FightingScreen FightingScreen;
+        SpriteFont SpriteFont;
+
+        List<Monster> Monsters = new List<Monster>();
+
+        Player Player;
 
         public Pokening()
         {
@@ -57,6 +64,25 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
+
+            Texture2D squirtle = Content.Load<Texture2D>("squirtle");
+            Texture2D bulbasaur = Content.Load<Texture2D>("bulbasaur");
+            Texture2D charmander = Content.Load<Texture2D>("charmander");
+            Texture2D pikachu = Content.Load<Texture2D>("pikachu");
+
+
+            Monster mSquirtle = new Monster(squirtle, "Squirtle");
+            Monster mBulbasaur = new Monster(bulbasaur, "Bulbasaur");
+            Monster mCharmander = new Monster(charmander, "Charmander");
+            Monster mPikachu = new Monster(pikachu, "Pikachu");
+
+            Monsters.Add(mSquirtle);
+            Monsters.Add(mBulbasaur);
+            Monsters.Add(mCharmander);
+            Monsters.Add(mPikachu);
+
+            Player = new Player(Monsters);
+
             WorldScreen.Initialize(this.Content);
             FightingScreen.Initialize(this.Content);
             base.Initialize();
@@ -73,6 +99,7 @@ namespace DangerousGame
 
             WorldScreen.LoadContent(this.Content);
             FightingScreen.LoadContent(this.Content);
+            SpriteFont = this.Content.Load<SpriteFont>("Calibri");
 
             //Objects.LoadTiles(this.Content, "objects");
             //Objects.CreateMap(this.Content, "objectsMap");
@@ -111,7 +138,20 @@ namespace DangerousGame
 
             if (PreviousScreen != CurrentScreen && CurrentScreen == Screens.FightingScreen)
             {
-                FightingScreen.Reinitialize(gameTime.TotalGameTime.Milliseconds);
+                Random rand = new Random(gameTime.TotalGameTime.Milliseconds);
+                int i = rand.Next(0, Monsters.Count);
+
+                rand = new Random();
+                int lvl = rand.Next(1, 5);
+
+                List<Attack> attacks = new List<Attack>();
+                attacks.Add(new Attack(15, "Tackle"));
+
+                Monster monster = (Monster)Monsters[i].Clone();
+                monster.Reset(lvl, attacks);
+
+                Battle battle = new Battle(Player, monster);
+                FightingScreen.Reinitialize(battle);
             }
             
             // Updating parent class
@@ -174,6 +214,8 @@ namespace DangerousGame
             {
                 FightingScreen.Draw(Graphics, SpriteBatch);
             }
+
+            SpriteBatch.DrawString(SpriteFont, "v0.2.3", new Vector2(750, 0), Color.Black);
             
             SpriteBatch.End();
 
