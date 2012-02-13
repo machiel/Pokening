@@ -33,6 +33,7 @@ namespace DangerousGame
         {
             this.Battle = battle;
             DisplayText = "";
+            FightOver = false;
         }
 
         public void LoadContent(ContentManager contentManager)
@@ -59,24 +60,51 @@ namespace DangerousGame
             }
             else
             {
-                if (Battle.States.EnemyTurn == Battle.GetState() && gameTime.TotalGameTime.Seconds - LastAction > 1)
+                if (FightOver == false)
                 {
-                    Battle.Attack();
-                } 
-                else if (pressedKeys.Contains(Keys.F) && !IsAttacking && Battle.GetState() == Battle.States.PlayerTurn)
-                {
-                    Battle.Attack();
-                    IsAttacking = true;
-                    LastAction = gameTime.TotalGameTime.Seconds;
+                    if (Battle.States.EnemyTurn == Battle.GetState() && gameTime.TotalGameTime.Seconds - LastAction > 1)
+                    {
+
+                        Random rand = new Random();
+                        int i = rand.Next(0, Battle.GetMonster().GetAttacks().Count());
+                        Battle.Attack(Battle.GetMonster().GetAttacks()[i]);
+                    }
+                    else if ((pressedKeys.Contains(Keys.D1) || pressedKeys.Contains(Keys.D2) ||
+                        pressedKeys.Contains(Keys.D3) ||
+                        pressedKeys.Contains(Keys.NumPad1) || pressedKeys.Contains(Keys.NumPad2) ||
+                        pressedKeys.Contains(Keys.NumPad3))
+                        && !IsAttacking && Battle.GetState() == Battle.States.PlayerTurn)
+                    {
+
+                        Attack attack = Battle.GetActivePlayerMonster().GetAttacks()[0];
+                        if ((pressedKeys.Contains(Keys.D1) || pressedKeys.Contains(Keys.NumPad1)) && Battle.GetActivePlayerMonster().GetAttacks().Count > 0)
+                        {
+                            attack = Battle.GetActivePlayerMonster().GetAttacks()[0];
+                        }
+                        else if ((pressedKeys.Contains(Keys.D2) || pressedKeys.Contains(Keys.NumPad2)) && Battle.GetActivePlayerMonster().GetAttacks().Count > 1)
+                        {
+                            attack = Battle.GetActivePlayerMonster().GetAttacks()[1];
+                        }
+                        else if ((pressedKeys.Contains(Keys.D3) || pressedKeys.Contains(Keys.NumPad3)) && Battle.GetActivePlayerMonster().GetAttacks().Count > 2)
+                        {
+                            attack = Battle.GetActivePlayerMonster().GetAttacks()[2];
+                        }
+                        Battle.Attack(attack);
+                        IsAttacking = true;
+                        LastAction = gameTime.TotalGameTime.Seconds;
+
+                    }
                 }
 
                 if (Battle.GetOutcome() == Battle.Outcomes.PlayerWon)
                 {
                     DisplayText = " YOU WON! < PRESS ESC TO EXIT > ";
+                    FightOver = true;
                 }
                 else if (Battle.GetOutcome() == Battle.Outcomes.EnemyWon)
                 {
                     DisplayText = " YOU LOST! < PRESS ESC TO EXIT > ";
+                    FightOver = true;
                 }
 
 
@@ -159,7 +187,7 @@ namespace DangerousGame
             spriteBatch.DrawString(SpriteFont, "1 = Thunderbolt", new Vector2(200, 500), Color.Black);
             spriteBatch.DrawString(SpriteFont, "2 = Tackle", new Vector2(400, 500), Color.Black);
             spriteBatch.DrawString(SpriteFont, "3 = Growl", new Vector2(200, 550), Color.Black);
-            spriteBatch.DrawString(SpriteFont, "4 = Potion", new Vector2(400, 550), Color.Black);
+            //spriteBatch.DrawString(SpriteFont, "4 = Potion", new Vector2(400, 550), Color.Black);
 
             Texture2D monsterTexture = Battle.GetMonster().GetTexture();
             spriteBatch.Draw(monsterTexture, new Vector2(500, 20), Color.White);

@@ -65,11 +65,11 @@ namespace DangerousGame
             return Outcome;
         }
 
-        public void Attack()
+        public void Attack(Attack attack)
         {
             if (State == States.PlayerTurn)
             {
-                Monster.DecreaseHealth(20);
+                Monster.DecreaseHealth(attack.GetDamage());
 
                 if (Monster.GetHealth() <= 0)
                 {
@@ -81,7 +81,7 @@ namespace DangerousGame
             }
             else if (State == States.EnemyTurn)
             {
-                ActivePlayerMonster.DecreaseHealth(10);
+                ActivePlayerMonster.DecreaseHealth(attack.GetDamage());
 
                 if (ActivePlayerMonster.GetHealth() <= 0)
                 {

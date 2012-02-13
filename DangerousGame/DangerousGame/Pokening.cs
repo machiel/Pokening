@@ -141,11 +141,12 @@ namespace DangerousGame
                 Random rand = new Random(gameTime.TotalGameTime.Milliseconds);
                 int i = rand.Next(0, Monsters.Count);
 
-                rand = new Random();
+                rand = new Random((int)gameTime.TotalGameTime.TotalSeconds);
                 int lvl = rand.Next(1, 5);
 
                 List<Attack> attacks = new List<Attack>();
                 attacks.Add(new Attack(15, "Tackle"));
+                attacks.Add(new Attack(0, "Growl"));
 
                 Monster monster = (Monster)Monsters[i].Clone();
                 monster.Reset(lvl, attacks);

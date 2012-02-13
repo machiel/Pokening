@@ -17,5 +17,11 @@ namespace DangerousGame
             this.Name = name;
         }
 
+
+        public int GetDamage()
+        {
+            return this.Damage;
+        }
+
     }
 }

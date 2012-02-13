@@ -50,6 +50,11 @@ namespace DangerousGame
             Health -= decrement;
         }
 
+        public List<Attack> GetAttacks()
+        {
+            return Attacks;
+        }
+
         public int GetHealth()
         {
             return Health;
