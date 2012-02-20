@@ -60,7 +60,7 @@ namespace DangerousGame
             Player.LoadContent(contentManager, "mainChar");
             Map.LoadTiles(contentManager, "tiles");
             Map.CreateMap(contentManager, "map-example");
-            SpriteFont = contentManager.Load<SpriteFont>("Calibri");   
+            SpriteFont = contentManager.Load<SpriteFont>("Calibri");
         }
 
         public Pokening.Screens Update(GameTime gameTime)
@@ -72,6 +72,40 @@ namespace DangerousGame
 
             Follow.Position = Player.Position - new Vector2(20, 60);
             Follow.UpdateFollow(gameTime);
+
+            List<DrawableAttack> attacks = Follow.GetAttacks();
+
+
+            for (int i = 0; i < Monsters.Count; i++)
+            {
+                DrawableMonster monster = Monsters[i];
+                Vector2 pos = monster.Position;
+                pos = pos - Map.GetPosition();
+
+                // Monster is visible
+                if (pos.X >= 0 && pos.X <= Properties.WindowWidth
+                    && pos.Y >= 0 && pos.Y <= Properties.WindowHeight)
+                {
+                    for (int a = 0; a < attacks.Count; a++)
+                    {
+                        DrawableAttack attack = attacks[a];
+                        Vector2 aPos = attack.Position - Map.GetPosition();
+
+                        if (aPos.X >= 0 && aPos.X <= Properties.WindowWidth
+                            && aPos.Y >= 0 && aPos.Y <= Properties.WindowHeight)
+                        {
+                            Console.Out.WriteLine("Possible Hit!");
+                            attack.Update(gameTime);
+                        }
+                        else
+                        {
+                            Console.Out.WriteLine("Removing");
+                            attacks.Remove(attack);
+                        }
+
+                    }
+                }
+            }
 
             if (Player.GetStatus() == MainCharacter.PlayerStatus.Attacking)
             {
@@ -88,10 +122,10 @@ namespace DangerousGame
         {
             Map.Draw(spriteBatch);
 
-            for(int i = 0; i < Monsters.Count; i++)
+            for (int i = 0; i < Monsters.Count; i++)
                 Monsters[i].Draw(spriteBatch, Map.GetPosition());
 
-            
+
             Follow.DrawFollow(spriteBatch, Map.GetPosition());
             Player.Draw(spriteBatch);
 
