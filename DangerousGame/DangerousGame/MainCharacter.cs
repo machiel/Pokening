@@ -44,8 +44,10 @@ namespace DangerousGame
 
         public void Update(GameTime gameTime)
         {
-            KeyboardState KeyboardState = Keyboard.GetState();
-            UpdateMovement(KeyboardState, gameTime);
+            KeyboardState keyboardState = Keyboard.GetState();
+            UpdateMovement(keyboardState, gameTime);
+
+
             base.Update(gameTime, Velocity, Direction);
         }
         private void UpdateMovement(KeyboardState currentKeyboardState, GameTime gameTime)

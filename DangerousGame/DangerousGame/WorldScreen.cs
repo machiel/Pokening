@@ -20,6 +20,9 @@ namespace DangerousGame
         MainCharacter Player;
 
         List<DrawableMonster> Monsters = new List<DrawableMonster>();
+        DrawableFollowMonster Follow = new DrawableFollowMonster();
+
+        FightBar FightBar = new FightBar();
 
         SpriteFont SpriteFont;
 
@@ -43,6 +46,13 @@ namespace DangerousGame
             monster.Position.X = 808;
             monster.Position.Y = 746;
             Monsters.Add(monster);
+
+            Texture2D fireball = contentManager.Load<Texture2D>("fireball");
+
+            Follow.LoadContent(contentManager, "fire");
+            Follow.AddTexture(fireball);
+            Follow.Position.X = 580;
+            Follow.Position.Y = 578;
         }
 
         public void LoadContent(ContentManager contentManager)
@@ -50,7 +60,7 @@ namespace DangerousGame
             Player.LoadContent(contentManager, "mainChar");
             Map.LoadTiles(contentManager, "tiles");
             Map.CreateMap(contentManager, "map-example");
-            SpriteFont = contentManager.Load<SpriteFont>("Calibri");
+            SpriteFont = contentManager.Load<SpriteFont>("Calibri");   
         }
 
         public Pokening.Screens Update(GameTime gameTime)
@@ -59,6 +69,9 @@ namespace DangerousGame
 
             // Updating Pikachu
             Player.Update(gameTime);
+
+            Follow.Position = Player.Position - new Vector2(20, 60);
+            Follow.UpdateFollow(gameTime);
 
             if (Player.GetStatus() == MainCharacter.PlayerStatus.Attacking)
             {
@@ -74,14 +87,21 @@ namespace DangerousGame
         public void Draw(GraphicsDeviceManager graphics, SpriteBatch spriteBatch)
         {
             Map.Draw(spriteBatch);
-            Monsters[0].Draw(spriteBatch, Map.GetPosition());
+
+            for(int i = 0; i < Monsters.Count; i++)
+                Monsters[i].Draw(spriteBatch, Map.GetPosition());
+
+            
+            Follow.DrawFollow(spriteBatch, Map.GetPosition());
             Player.Draw(spriteBatch);
+
             spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(649, 29), Color.Black);
             spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(651, 29), Color.Black);
             spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(651, 31), Color.Black);
             spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(649, 31), Color.Black);
             spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(650, 30), Color.White);
-            
+
+            FightBar.Draw(graphics, spriteBatch, SpriteFont);
         }
     }
 }

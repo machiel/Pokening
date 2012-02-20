@@ -98,7 +98,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\Calibri.xnb</Output>
-      <Time>2012-01-31T11:14:37.8487699+01:00</Time>
+      <Time>2012-02-20T18:50:43.357839+01:00</Time>
     </Item>
     <Item>
       <Source>map-example-obstacle.png</Source>
@@ -135,6 +135,24 @@
       <Options>None</Options>
       <Output>C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\tree.xnb</Output>
       <Time>2012-02-20T17:38:43.0147295+01:00</Time>
+    </Item>
+    <Item>
+      <Source>fire.png</Source>
+      <Name>fire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\fire.xnb</Output>
+      <Time>2012-02-20T18:19:03.8061908+01:00</Time>
+    </Item>
+    <Item>
+      <Source>fireball.png</Source>
+      <Name>fireball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\fireball.xnb</Output>
+      <Time>2012-02-20T18:58:23.6441659+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

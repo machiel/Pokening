@@ -216,7 +216,11 @@ namespace DangerousGame
                 FightingScreen.Draw(Graphics, SpriteBatch);
             }
 
-            SpriteBatch.DrawString(SpriteFont, "v0.2.3", new Vector2(750, 0), Color.Black);
+            SpriteBatch.DrawString(SpriteFont, "v0.3.0", new Vector2(749, 4), Color.Black);
+            SpriteBatch.DrawString(SpriteFont, "v0.3.0", new Vector2(751, 4), Color.Black);
+            SpriteBatch.DrawString(SpriteFont, "v0.3.0", new Vector2(749, 6), Color.Black);
+            SpriteBatch.DrawString(SpriteFont, "v0.3.0", new Vector2(751, 6), Color.Black);
+            SpriteBatch.DrawString(SpriteFont, "v0.3.0", new Vector2(750, 5), Color.White);
             
             SpriteBatch.End();
 

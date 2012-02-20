@@ -123,7 +123,10 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Attack.cs" />
     <Compile Include="Battle.cs" />
+    <Compile Include="DrawableAttack.cs" />
+    <Compile Include="DrawableFollowMonster.cs" />
     <Compile Include="DrawableMonster.cs" />
+    <Compile Include="FightBar.cs" />
     <Compile Include="FightingScreen.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemScreen.cs" />

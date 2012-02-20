@@ -93,14 +93,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DangerousGame.exe" size="30720">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DangerousGame.exe" size="32768">
       <assemblyIdentity name="DangerousGame" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>XfhWSy0AxU7ekxoceCQKX9/VqCA=</dsig:DigestValue>
+        <dsig:DigestValue>KA4ByYC0+KAu/Av8se+4Of4BXZM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -122,13 +122,13 @@
       <dsig:DigestValue>sPipnIlQFi+/3WJlQ4wRYZuXlA4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\Calibri.xnb" size="18094">
+  <file name="Content\Calibri.xnb" size="12206">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>MCNUiyMsSd/VEslDXjlzQTWzoeA=</dsig:DigestValue>
+      <dsig:DigestValue>WIH49UQxgx32xvFRMuBe4lBZRX4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\charmander.xnb" size="37051">
@@ -147,6 +147,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>VIESAho56+60c57vpyAMP9geDqM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\fire.xnb" size="5155">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>He/l3zbDjeZ2LBMciqI0vYOasjM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\fireball.xnb" size="1211">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>b13/EIyPe/UgAy/geXj5ml5NtRk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\grassTile.xnb" size="10187">

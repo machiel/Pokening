@@ -23,3 +23,5 @@ C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\DangerousGame.app
 C:\projects\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.exe.manifest
 C:\projects\Pokening\DangerousGame\DangerousGame\obj\x86\Debug\DangerousGame.application
 C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\tree.xnb
+C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\fire.xnb
+C:\projects\Pokening\DangerousGame\DangerousGame\bin\x86\Debug\Content\fireball.xnb
