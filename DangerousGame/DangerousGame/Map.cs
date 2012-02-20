@@ -15,7 +15,7 @@ namespace DangerousGame
         // Array with tiles, what kind of tile on what position
         public List<List<Tile>> Tiles = new List<List<Tile>>();
 
-        private Vector2 Position = Vector2.Zero;
+        private Vector2 Position = new Vector2(800, 600);
 
         // All the tile images
         private Texture2D TileMap;
@@ -113,6 +113,11 @@ namespace DangerousGame
                     Tiles[x].Add(new Tile(colorString, type, TileMap, tileProperty, objectsColorString));
                 }
             }
+        }
+
+        public Vector2 GetPosition()
+        {
+            return Position;
         }
 
         private Color GetTileColor(Color[] textureData, Texture2D mapImage, int x, int y)

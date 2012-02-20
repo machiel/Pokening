@@ -39,6 +39,7 @@ namespace DangerousGame
         {
             this.Map = map;
             Status = PlayerStatus.Standing;
+            Position = new Vector2(2000, 500);
         }
 
         public void Update(GameTime gameTime)

@@ -19,6 +19,10 @@ namespace DangerousGame
         Map Objects;
         MainCharacter Player;
 
+        List<DrawableMonster> Monsters = new List<DrawableMonster>();
+
+        SpriteFont SpriteFont;
+
         public void Initialize(ContentManager contentManager)
         {
             Map = new Map();
@@ -26,13 +30,19 @@ namespace DangerousGame
 
             Player = new MainCharacter(Map);
             //Player.Position = MainCharacter.GetCenter();
-            Player.setPosition(new Vector2(Properties.WindowWidth, Properties.WindowHeight));
+            Player.setPosition(new Vector2(1774, 1030));
             //Console.Out.WriteLine("Player pos: " + Player.Position.X + ", Y: " + Player.Position.Y);
             Player.SetAnimation(Properties.MainCharacterWidth, Properties.MainCharacterHeight);
             Player.AddAnimation("walkDown", new int[] { 1, 2 }, 4);
             Player.AddAnimation("walkUp", new int[] { 4, 5 }, 4);
             Player.AddAnimation("walkLeft", new int[] { 7, 8 }, 5);
             Player.AddAnimation("walkRight", new int[] { 10, 11 }, 5);
+
+            DrawableMonster monster = new DrawableMonster();
+            monster.LoadContent(contentManager, "tree");
+            monster.Position.X = 808;
+            monster.Position.Y = 746;
+            Monsters.Add(monster);
         }
 
         public void LoadContent(ContentManager contentManager)
@@ -40,6 +50,7 @@ namespace DangerousGame
             Player.LoadContent(contentManager, "mainChar");
             Map.LoadTiles(contentManager, "tiles");
             Map.CreateMap(contentManager, "map-example");
+            SpriteFont = contentManager.Load<SpriteFont>("Calibri");
         }
 
         public Pokening.Screens Update(GameTime gameTime)
@@ -63,7 +74,14 @@ namespace DangerousGame
         public void Draw(GraphicsDeviceManager graphics, SpriteBatch spriteBatch)
         {
             Map.Draw(spriteBatch);
+            Monsters[0].Draw(spriteBatch, Map.GetPosition());
             Player.Draw(spriteBatch);
+            spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(649, 29), Color.Black);
+            spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(651, 29), Color.Black);
+            spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(651, 31), Color.Black);
+            spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(649, 31), Color.Black);
+            spriteBatch.DrawString(SpriteFont, "X: " + Player.Position.X + " Y: " + Player.Position.Y, new Vector2(650, 30), Color.White);
+            
         }
     }
 }
