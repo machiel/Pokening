@@ -130,15 +130,17 @@ namespace DangerousGame
 
             Vector2 inversedPosition = Position * -1;
 
+            Vector2[] renderablePoints = SelectRenderableTiles(Position);
+
             // For each tile drawing the texture corresponding with that tile
-            for (int x = 0; x < Tiles.Count; x++)
+            for (int x = (int)renderablePoints[0].X; x <= renderablePoints[1].X; x++)
             {
                 // Normal X position + the offset of the background
                 int newX = x * Properties.TileWidth;
 
-                for (int Y = 0; Y < Tiles[x].Count; Y++)
+                for (int y = (int)renderablePoints[0].Y; y < renderablePoints[1].Y; y++)
                 {
-                    Tile tile = Tiles[x][Y];
+                    Tile tile = Tiles[x][y];
 
                     // Getting the position of the tile on the tile images sprite
                     Rectangle tileBoundaries = tile.GetTile();
@@ -147,7 +149,7 @@ namespace DangerousGame
                     Rectangle objectBoundaries = tile.GetObject();
 
                     // Normal Y position + the offset of the background
-                    int newY = Y * Properties.TileHeight;
+                    int newY = y * Properties.TileHeight;
 
                     // The position where the objects and underground should be drawn
                     Vector2 drawLocation = new Vector2(newX, newY) + inversedPosition;
@@ -171,6 +173,22 @@ namespace DangerousGame
             Position.Y = centerPoint.Y - (Properties.WindowHeight / 2);
         }
 
+        private Vector2[] SelectRenderableTiles(Vector2 pos)
+        {
+            Vector2[] points = new Vector2[2];
+
+            int x = (int)(pos.X) / Properties.TileWidth;
+            int y = (int)(pos.Y) / Properties.TileHeight;
+
+            points[0] = new Vector2(x, y);
+            points[1] = new Vector2(x + (Properties.WindowWidth / Properties.TileWidth) + 2, y + (Properties.WindowHeight / Properties.TileHeight) + 2);
+
+            if (points[1].X > Tiles.Count) points[1].X = Tiles.Count;
+            if (points[1].Y > Tiles[0].Count) points[1].Y = Tiles[0].Count;
+
+            return points;
+        }
+
         private Tile GetTileFromPosition(Vector2 pos)
         {
             int x = (int)(pos.X) / Properties.TileWidth;
@@ -184,7 +202,6 @@ namespace DangerousGame
         /// <param name="newPosition">His new position</param>
         public bool MayWalk(Vector2 newPosition)
         {
-
             Tile tile = GetTileFromPosition(newPosition);
             return !tile.IsObstacle();
 

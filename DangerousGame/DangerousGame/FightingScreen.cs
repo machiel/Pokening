@@ -170,7 +170,7 @@ namespace DangerousGame
             myHealthTexture.SetData(myHealthData);
 
             spriteBatch.Draw(text, Vector2.Zero, Color.White);
-            //spriteBatch.DrawString(SpriteFont, "A wild " + Monster.GetName() + " appeared!", new Vector2(10, 30), Color.Black);
+           
             spriteBatch.DrawString(SpriteFont, Battle.GetMonster().GetName().ToUpper(), new Vector2(40, 30), Color.Black);
             spriteBatch.DrawString(SpriteFont, ":L" + Battle.GetMonster().GetLevel(), new Vector2(50, 50), Color.Black);
             spriteBatch.DrawString(SpriteFont, "HP:", new Vector2(50, 70), Color.Black);
@@ -187,7 +187,6 @@ namespace DangerousGame
             spriteBatch.DrawString(SpriteFont, "1 = Thunderbolt", new Vector2(200, 500), Color.Black);
             spriteBatch.DrawString(SpriteFont, "2 = Tackle", new Vector2(400, 500), Color.Black);
             spriteBatch.DrawString(SpriteFont, "3 = Growl", new Vector2(200, 550), Color.Black);
-            //spriteBatch.DrawString(SpriteFont, "4 = Potion", new Vector2(400, 550), Color.Black);
 
             Texture2D monsterTexture = Battle.GetMonster().GetTexture();
             spriteBatch.Draw(monsterTexture, new Vector2(500, 20), Color.White);
