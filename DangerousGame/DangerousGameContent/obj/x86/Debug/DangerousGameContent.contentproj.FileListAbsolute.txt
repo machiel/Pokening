@@ -1,1 +1,2 @@
 C:\projects\Pokening\DangerousGame\DangerousGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Arco\Pokening\DangerousGame\DangerousGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
