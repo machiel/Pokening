@@ -17,16 +17,37 @@ namespace DangerousGame
 
         private Texture2D Texture;
 
-        public DrawableAttack(Vector2 position, Texture2D texture)
+        public DrawableAttack(Vector2 position, Texture2D texture, Vector2 direction)
         {
             Position = position;
-            Direction = new Vector2(1, -2);
+            direction.Normalize();
+            Direction = direction;
             Velocity = new Vector2(1, 1);
             Texture = texture;
         }
 
         public void Update(GameTime gameTime)
         {
+            List<DrawableMonster> monsters = Pokening.Instance.GetWorldScreen().Monsters;
+            Rectangle aBounds = Texture.Bounds;
+            Vector2 aPos = Position;
+
+            foreach(DrawableMonster monster in monsters) {
+
+                Rectangle bBounds = monster.Texture.Bounds;
+                Vector2 bPos = monster.Position;
+                
+                if(aPos.X + aBounds.Width > bPos.X &&
+                    aPos.X < bPos.X + bBounds.Width &&
+                    aPos.Y + aBounds.Height > bPos.Y &&
+                    aPos.Y < bPos.Y + bBounds.Height) 
+                {
+
+                    monster.DecreaseHealth(10);
+                }
+
+            }
+
             Position += (Direction * Velocity);
         }
 

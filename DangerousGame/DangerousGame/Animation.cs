@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DangerousGame
 {
-    class Animation
+    public class Animation
     {
         public string Name;
         public int[] Frames;

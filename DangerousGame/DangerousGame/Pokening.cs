@@ -18,6 +18,7 @@ namespace DangerousGame
     /// </summary>
     public class Pokening : Microsoft.Xna.Framework.Game
     {
+        public static Pokening Instance { get; private set; }
         GraphicsDeviceManager Graphics;
         SpriteBatch SpriteBatch;
 
@@ -42,6 +43,9 @@ namespace DangerousGame
 
         public Pokening()
         {
+
+            Instance = this;
+
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.Window.Title = "Pokening";
@@ -56,6 +60,11 @@ namespace DangerousGame
             this.Graphics.PreferredBackBufferHeight = Properties.WindowHeight;
         }
 
+        public WorldScreen GetWorldScreen()
+        {
+            return this.WorldScreen;
+        }
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -64,6 +73,8 @@ namespace DangerousGame
         /// </summary>
         protected override void Initialize()
         {
+
+            this.IsMouseVisible = true;
 
             Texture2D squirtle = Content.Load<Texture2D>("squirtle");
             Texture2D bulbasaur = Content.Load<Texture2D>("bulbasaur");

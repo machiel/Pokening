@@ -59,7 +59,13 @@ namespace DangerousGame
 
             if (keyboardState.IsKeyDown(Keys.D1) && gameTime.TotalGameTime.Seconds - LastAction >= 1)
             {
-                DrawableAttack attack = new DrawableAttack(this.Position, AttackTexture);
+
+                MouseState mousestate = Mouse.GetState();
+                Vector2 mousePos = new Vector2(mousestate.X, mousestate.Y);
+
+                mousePos -= new Vector2(Properties.WindowWidth / 2, Properties.WindowHeight / 2);
+
+                DrawableAttack attack = new DrawableAttack(this.Position, AttackTexture, mousePos);
                 Attacks.Add(attack);
 
                 LastAction = gameTime.TotalGameTime.Seconds;
@@ -74,6 +80,11 @@ namespace DangerousGame
             //    if (gameTime.TotalGameTime.Ticks % (100 / CurrentAnimation.FrameRate) == 0)
              //       CurrentAnimation.NextFrame();
             //Position += theDirection * theSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+
+        public List<DrawableAttack> GetAttacks()
+        {
+            return Attacks;
         }
     }
 }

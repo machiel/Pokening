@@ -9,19 +9,20 @@ using System.Collections;
 
 namespace DangerousGame
 {
-    class DrawableMonster
+    public class DrawableMonster
     {
         public Vector2 Position = new Vector2(0, 0);
         public Rectangle Size;
         public float Scale = 1.0f;
-        protected Texture2D Texture;
+        public Texture2D Texture;
         protected Color[] TextureData;
 
         protected bool IsAnimated = false;
         protected bool IsPlaying = false;
+        public float Health = 100.0f;
         protected int FrameWidth;
         protected int FrameHeight;
-        protected Animation CurrentAnimation;
+        public Animation CurrentAnimation;
 
         protected ArrayList Animations = new ArrayList();
 
@@ -41,6 +42,11 @@ namespace DangerousGame
         public Color[] GetTextureData()
         {
             return TextureData;
+        }
+
+        public void DecreaseHealth(float decrease)
+        {
+            Health -= decrease;
         }
 
         public static Vector2 GetCenter()

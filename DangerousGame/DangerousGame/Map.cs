@@ -188,8 +188,8 @@ namespace DangerousGame
             points[0] = new Vector2(x, y);
             points[1] = new Vector2(x + (Properties.WindowWidth / Properties.TileWidth) + 2, y + (Properties.WindowHeight / Properties.TileHeight) + 2);
 
-            if (points[1].X > Tiles.Count) points[1].X = Tiles.Count;
-            if (points[1].Y > Tiles[0].Count) points[1].Y = Tiles[0].Count;
+            if (points[1].X > Tiles.Count) points[1].X = Tiles.Count - 1;
+            if (points[1].Y > Tiles[0].Count) points[1].Y = Tiles[0].Count - 1;
 
             return points;
         }

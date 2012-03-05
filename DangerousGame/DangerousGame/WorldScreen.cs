@@ -12,14 +12,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DangerousGame
 {
-    class WorldScreen : Screen
+    public class WorldScreen : Screen
     {
 
         Map Map;
         Map Objects;
         MainCharacter Player;
 
-        List<DrawableMonster> Monsters = new List<DrawableMonster>();
+        public List<DrawableMonster> Monsters = new List<DrawableMonster>();
         DrawableFollowMonster Follow = new DrawableFollowMonster();
 
         FightBar FightBar = new FightBar();
@@ -30,7 +30,6 @@ namespace DangerousGame
         {
             Map = new Map();
             Objects = new Map();
-
             Player = new MainCharacter(Map);
             //Player.Position = MainCharacter.GetCenter();
             Player.setPosition(new Vector2(580, 528));
@@ -79,30 +78,36 @@ namespace DangerousGame
             for (int i = 0; i < Monsters.Count; i++)
             {
                 DrawableMonster monster = Monsters[i];
-                Vector2 pos = monster.Position;
-                pos = pos - Map.GetPosition();
 
-                // Monster is visible
-                if (pos.X >= 0 && pos.X <= Properties.WindowWidth
-                    && pos.Y >= 0 && pos.Y <= Properties.WindowHeight)
+                if (monster.Health <= 0)
                 {
-                    for (int a = 0; a < attacks.Count; a++)
+                    Monsters.Remove(monster);
+                }
+                else
+                {
+                    Vector2 pos = monster.Position;
+                    pos = pos - Map.GetPosition();
+
+                    // Monster is visible
+                    if (pos.X >= 0 && pos.X <= Properties.WindowWidth
+                        && pos.Y >= 0 && pos.Y <= Properties.WindowHeight)
                     {
-                        DrawableAttack attack = attacks[a];
-                        Vector2 aPos = attack.Position - Map.GetPosition();
-
-                        if (aPos.X >= 0 && aPos.X <= Properties.WindowWidth
-                            && aPos.Y >= 0 && aPos.Y <= Properties.WindowHeight)
+                        for (int a = 0; a < attacks.Count; a++)
                         {
-                            Console.Out.WriteLine("Possible Hit!");
-                            attack.Update(gameTime);
-                        }
-                        else
-                        {
-                            Console.Out.WriteLine("Removing");
-                            attacks.Remove(attack);
-                        }
+                            DrawableAttack attack = attacks[a];
+                            Vector2 aPos = attack.Position - Map.GetPosition();
 
+                            if (aPos.X >= 0 && aPos.X <= Properties.WindowWidth
+                                && aPos.Y >= 0 && aPos.Y <= Properties.WindowHeight)
+                            {
+                                attack.Update(gameTime);
+                            }
+                            else
+                            {
+                                attacks.Remove(attack);
+                            }
+
+                        }
                     }
                 }
             }
@@ -117,6 +122,7 @@ namespace DangerousGame
             }
 
         }
+
 
         public void Draw(GraphicsDeviceManager graphics, SpriteBatch spriteBatch)
         {
