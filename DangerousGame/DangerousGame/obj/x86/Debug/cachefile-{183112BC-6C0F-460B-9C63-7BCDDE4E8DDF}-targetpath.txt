@@ -8,10 +8,10 @@ Content\grassTile.xnb
 Content\mainChar.xnb
 Content\map-example.xnb
 Content\tiles.xnb
-Content\Calibri.xnb
 Content\map-example-obstacle.xnb
 Content\map-example-objects.xnb
 Content\map-example-objectsMap.xnb
 Content\tree.xnb
 Content\fire.xnb
 Content\fireball.xnb
+Content\Calibri.xnb

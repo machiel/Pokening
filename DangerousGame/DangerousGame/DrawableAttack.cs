@@ -17,6 +17,8 @@ namespace DangerousGame
 
         private Texture2D Texture;
 
+        public bool Used = false;
+
         public DrawableAttack(Vector2 position, Texture2D texture, Vector2 direction)
         {
             Position = position;
@@ -44,6 +46,7 @@ namespace DangerousGame
                 {
 
                     monster.DecreaseHealth(10);
+                    Used = true;
                 }
 
             }

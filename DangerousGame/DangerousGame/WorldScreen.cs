@@ -42,7 +42,7 @@ namespace DangerousGame
 
             DrawableMonster monster = new DrawableMonster();
             monster.LoadContent(contentManager, "tree");
-            monster.Position.X = 808;
+            monster.Position.X = 812;
             monster.Position.Y = 746;
             Monsters.Add(monster);
 
@@ -97,7 +97,7 @@ namespace DangerousGame
                             DrawableAttack attack = attacks[a];
                             Vector2 aPos = attack.Position - Map.GetPosition();
 
-                            if (aPos.X >= 0 && aPos.X <= Properties.WindowWidth
+                            if (attack.Used == false && aPos.X >= 0 && aPos.X <= Properties.WindowWidth
                                 && aPos.Y >= 0 && aPos.Y <= Properties.WindowHeight)
                             {
                                 attack.Update(gameTime);

@@ -136,9 +136,35 @@ namespace DangerousGame
             if (Velocity.Equals(Vector2.Zero))
                 Stop();
 
-            // Check or the character can walk to his new position. If not, Dont let him walk to there.
+
             Vector2 newPosition = Position + (Direction * Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            if (!Map.MayWalk(newPosition))
+
+            List<DrawableMonster> monsters = Pokening.Instance.GetWorldScreen().Monsters;
+            Rectangle aBounds = Texture.Bounds;
+            Vector2 aPos = newPosition;
+
+
+            bool monsterInTheWay = false;
+            foreach (DrawableMonster monster in monsters)
+            {
+
+                Rectangle bBounds = monster.Texture.Bounds;
+                Vector2 bPos = monster.Position;
+
+                if (aPos.X + aBounds.Width > bPos.X &&
+                    aPos.X < bPos.X + bBounds.Width &&
+                    aPos.Y + aBounds.Height > bPos.Y &&
+                    aPos.Y < bPos.Y + bBounds.Height)
+                {
+
+                    monsterInTheWay = true;
+                }
+
+            }
+
+            // Check or the character can walk to his new position. If not, Dont let him walk to there.
+            
+            if (!Map.MayWalk(newPosition) || monsterInTheWay)
             {
                 Velocity = Vector2.Zero;
                 Direction = Vector2.Zero;
